@@ -8,12 +8,13 @@
 	
 	if($user)
 		{
+
 			require "views/logged.html";
 			
 		}
 	else
 	{
-		$phrase ="merci de vous inscrire";
+		$phrase ="Erreur de connection : réessayer ou inscrivez vous";
 		require "views/subscribe.html";
 	}
 

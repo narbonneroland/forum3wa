@@ -18,11 +18,8 @@ Class User
 			if(isset($data['login']))
 				$this->login=mysqli_real_escape_string($this->db,$data['login']);
 			if(isset($data['password']))
-				$this->password=mysqli_real_escape_string($this->db,$data['login']);
-			$this->status=false;
-			$this->datecreation=date("Y/m/d");
+				$this->password=mysqli_real_escape_string($this->db,$data['password']);
 			
-			$this->droits="U"; // A->Admin,U->User,M->Modérateur
 	}
 
 	public function setId($id)
@@ -88,7 +85,8 @@ Class User
 	public function selectUser($data)
 	{
 	
-		$requete="SELECT * FROM user WHERE login='".$this->getLogin()."'";
+		$requete="SELECT * FROM user WHERE login='".$this->getLogin()."' AND mdp='".$this->getPassword()."'";
+		var_dump($requete);
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
 		if($nbr==0)
@@ -98,7 +96,6 @@ Class User
 		else
 		{
 			$record=mysqli_fetch_assoc($res);
-			//var_dump($record);
 			$this->setId($record['id']);
 			$this->setPassword($record['mdp']);
 			$this->setDroits($record['droits']);
