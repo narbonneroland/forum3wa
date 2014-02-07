@@ -1,6 +1,6 @@
 <?php // modèle MVC2
 header('Content-Type: text/html; charset=utf8_bin');
-
+require_once("models/User.class.php");
 session_start();
 
 if(!isset($_SESSION['created']))
