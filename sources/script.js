@@ -1,20 +1,21 @@
 $(document).ready(function()
 {
-
+	init_btn_login();
 });
 
 function init_btn_login ()
 {
-	$('#btn-login').click(function(e)
+	$('#connexion').click(function(e)
 	{		
-		var login=$('#input-login').val();
-		var password=$('#input-password').val();
+		var login=$('#login').val();
+		var password=$('#password').val();
 		e.preventDefault();	
 		var options={
-			"url":"index.php?page=login.php",
+			"url":"index.php?page=login",
 			"method":"POST",
 			"data":{"login":login,"password":password}
 		}
+
 		$.ajax(options).done(function(res)
 		{
 			alert(res);
