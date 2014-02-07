@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 07 Février 2014 à 11:05
+-- Généré le: Ven 07 Février 2014 à 14:44
 -- Version du serveur: 5.5.34-0ubuntu0.13.04.1
 -- Version de PHP: 5.4.9-4ubuntu2.3
 
@@ -29,10 +29,17 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` varchar(512) COLLATE utf8_bin NOT NULL,
-  `idsujet` varchar(8) COLLATE utf8_bin NOT NULL,
-  `iduser` varchar(8) COLLATE utf8_bin NOT NULL,
+  `idsujet` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table messages postés' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table messages postés' AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `message`
+--
+
+INSERT INTO `message` (`id`, `message`, `idsujet`, `iduser`) VALUES
+(1, 'le 1er message de la rubrique Informatique, du thème developpement et du sujet PHP', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -44,7 +51,14 @@ CREATE TABLE IF NOT EXISTS `rubrique` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `rubrique` varchar(64) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table des rubriques' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table des rubriques' AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `rubrique`
+--
+
+INSERT INTO `rubrique` (`id`, `rubrique`) VALUES
+(1, 'INFORMATIQUE');
 
 -- --------------------------------------------------------
 
@@ -68,13 +82,20 @@ CREATE TABLE IF NOT EXISTS `status` (
 CREATE TABLE IF NOT EXISTS `sujet` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sujet` varchar(64) COLLATE utf8_bin NOT NULL,
-  `idtheme` varchar(8) COLLATE utf8_bin NOT NULL,
-  `iduser` varchar(8) COLLATE utf8_bin NOT NULL,
+  `idtheme` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
   `datesujet` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `nbrlu` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `sujet`
+--
+
+INSERT INTO `sujet` (`id`, `sujet`, `idtheme`, `iduser`, `datesujet`, `nbrlu`, `status`) VALUES
+(1, 'PHP', 1, 1, '2014-02-07 13:42:30', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -85,9 +106,16 @@ CREATE TABLE IF NOT EXISTS `sujet` (
 CREATE TABLE IF NOT EXISTS `theme` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `theme` varchar(64) COLLATE utf8_bin NOT NULL,
-  `idrubrique` varchar(8) COLLATE utf8_bin NOT NULL,
+  `idrubrique` int(8) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table des themes' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table des themes' AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `theme`
+--
+
+INSERT INTO `theme` (`id`, `theme`, `idrubrique`) VALUES
+(1, 'Developpement', 1);
 
 -- --------------------------------------------------------
 
@@ -103,7 +131,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `status` tinyint(1) NOT NULL,
   `datecreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table des users' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='table des users' AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`id`, `login`, `mdp`, `droits`, `status`, `datecreate`) VALUES
+(1, 'admin', 'admin', 1, 0, '2014-02-07 13:44:02');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -12,6 +12,7 @@ Class User
 
 	public function __construct($db, $data)
 	{
+			$this->db=$db;
 			if(isset($data['id']))
 				$this->id=intval($data['id']);
 			if(isset($data['login']))
@@ -20,7 +21,7 @@ Class User
 				$this->password=mysqli_real_escape_string($this->db,$data['login']);
 			$this->status=false;
 			$this->datecreation=date("Y/m/d");
-			$this->db=$db;
+			
 			$this->droits="U"; // A->Admin,U->User,M->Modérateur
 	}
 
@@ -66,7 +67,7 @@ Class User
 
 	public function setStatus($status=false)
 	{
-		$this->status=$Status;
+		$this->status=$status;
 	}
 
 	public function getStatus()
@@ -82,6 +83,29 @@ Class User
 	public function getDateCreation()
 	{
 		return $this->datecreation;
+	}
+
+	public function selectUser($data)
+	{
+	
+		$requete="SELECT * FROM user WHERE login='".$this->getLogin()."'";
+		$res=mysqli_query($this->db,$requete);
+		$nbr=mysqli_num_rows($res);
+		if($nbr==0)
+		{
+			return false;
+		}
+		else
+		{
+			$record=mysqli_fetch_assoc($res);
+			//var_dump($record);
+			$this->setId($record['id']);
+			$this->setPassword($record['mdp']);
+			$this->setDroits($record['droits']);
+			$this->setStatus($record['status']);	
+			$this->setDateCreation($record['datecreate']);
+			return $this;
+		}
 	}
 
 }
