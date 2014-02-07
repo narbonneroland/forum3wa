@@ -97,7 +97,6 @@ Class User
 		{
 			$record=mysqli_fetch_assoc($res);
 			$this->setId($record['id']);
-			$this->setPassword($record['mdp']);
 			$this->setDroits($record['droits']);
 			$this->setStatus($record['status']);	
 			$this->setDateCreation($record['datecreate']);

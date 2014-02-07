@@ -2,7 +2,6 @@
 
 	$_SESSION['login']=$_POST['login'];
 	$user= new User($db,$_POST);
-	
 	$user=$user->selectUser($_POST);
 	//echo "<pre>".print_r($user,true)."</pre>";
 	
