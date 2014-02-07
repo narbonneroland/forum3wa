@@ -1,2 +1,2 @@
-<?php require "controlers/contentlist.php"; ?>
-<?php require "controlers/contentmsg.php"; ?>
+<?php require "controllers/contentlist.php"; ?>
+<?php require "controllers/contentmsg.php"; ?>

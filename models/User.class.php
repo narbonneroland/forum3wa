@@ -7,11 +7,21 @@ Class User
 	private $password;
 	private $droits; //Admin, Modérateur, User
 	private $status; // Bannis = true, false par défaut
+	private $datecreation;
 	private $db;
 
 	public function __construct($db, $data)
 	{
-
+			if(isset($data['id']))
+				$this->id=intval($data['id']);
+			if(isset($data['login']))
+				$this->login=mysqli_real_escape_string($this->db,$data['login']);
+			if(isset($data['password']))
+				$this->password=mysqli_real_escape_string($this->db,$data['login']);
+			$this->status=false;
+			$this->datecreation=date("Y/m/d");
+			$this->db=$db;
+			$this->droits="U"; // A->Admin,U->User,M->Modérateur
 	}
 
 	public function setId($id)
@@ -29,7 +39,6 @@ Class User
 		$this->login=$login;
 	}
 	
-
 	public function getLogin()
 	{
 		return $this->login;
@@ -63,6 +72,16 @@ Class User
 	public function getStatus()
 	{
 		return $this->bannis;
+	}
+
+	public function setDateCreation($datecreation)
+	{
+		$this->datecreation=$datecreation;
+	}
+
+	public function getDateCreation()
+	{
+		return $this->datecreation;
 	}
 
 }

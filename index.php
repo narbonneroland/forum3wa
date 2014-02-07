@@ -10,24 +10,24 @@ if(!isset($_SESSION['created']))
 
 function init_session()
 {
-	$_SESSION['Login']="";
+	$_SESSION['login']="";
 	$_SESSION['created']=true;
 }
 
-$db = mysqli_connect('127.0.0.1','root','troiswa','forum');
+$db = mysqli_connect('localhost','root','troiswa','forum');
 
 if ($db == false)
 	die("erreur de connexion à la base MySQL");
 
-$content = 'controlers/content.php';
+$content = 'controllers/content.php';
 
 if (isset($_GET['page']))
 {	
-	$content = 'controlers/'.$_GET['page'].'.php';
+	$content = 'controllers/'.$_GET['page'].'.php';
 }
 
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']))
 	require($content);
 else 
-	require('controlers/skel.php');
+	require('controllers/skel.php');
 ?>
