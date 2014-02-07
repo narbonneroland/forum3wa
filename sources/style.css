@@ -25,7 +25,6 @@ header img{
 #navigation ul{
 	display: inline-block;
 	width: 60%;
-	border: 1px solid green;
 	vertical-align: top;
 }
 #navigation li{
@@ -34,7 +33,6 @@ header img{
 }
 #connexion form{
 	display: inline-block;
-	border: 1px solid green;
 }
 #connexion form input{
 	display: block;
