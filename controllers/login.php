@@ -14,7 +14,7 @@
 	else
 	{
 		$phrase ="Erreur de connection : réessayer ou inscrivez vous";
-		require "views/subscribe.html";
+		require "views/login_error.html";
 	}
 
 	
