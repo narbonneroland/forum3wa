@@ -7,11 +7,12 @@ Class User
 	private $password;
 	private $droits; //Admin, Modérateur, User
 	private $status; // Bannis = true, false par défaut
+	private $datecreation;
 	private $db;
 
 	public function __construct($db, $data)
 	{
-
+			
 	}
 
 	public function setId($id)
@@ -29,7 +30,6 @@ Class User
 		$this->login=$login;
 	}
 	
-
 	public function getLogin()
 	{
 		return $this->login;
@@ -63,6 +63,16 @@ Class User
 	public function getStatus()
 	{
 		return $this->bannis;
+	}
+
+	public function setDateCreation($datecreation)
+	{
+		$this->datecreation=$datecreation;
+	}
+
+	public function getDateCreation()
+	{
+		return $this->datecreation;
 	}
 
 }
