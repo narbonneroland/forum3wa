@@ -1,5 +1,5 @@
 <?php 
-	require "views/logged.html";
+	require "views/login.html";
 	
 	/*
 	if (isset($_SESSION["login"]))
