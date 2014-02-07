@@ -1,8 +1,23 @@
 <?php 
+
+	$_SESSION['login']=$_POST['login'];
+	$user= new User($db,$_POST);
 	
-	if (isset($_SESSION["login"]))
-		require "views/logged.html";
+	$user=$user->selectUser($_POST);
+	//echo "<pre>".print_r($user,true)."</pre>";
+	
+	if($user)
+		{
+			require "views/logged.html";
+			
+		}
 	else
-		require "views/login.html";
+	{
+		$phrase ="merci de vous inscrire";
+		require "views/subscribe.html";
+	}
+
+	
+		
 
 ?>
