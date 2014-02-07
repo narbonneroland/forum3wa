@@ -5,6 +5,7 @@ $(document).ready(function()
 
 function init_btns_login ()
 {
+	init_form_login ();
 	init_btn_login ();
 	init_btn_logoff ();	
 	init_btn_subscribe ();
@@ -12,7 +13,7 @@ function init_btns_login ()
 	init_btn_reload_login_form ();
 }
 
-function init_btn_login ()
+function init_form_login ()
 {
 	$("#form_login").submit(function(e)
 	{		
@@ -24,6 +25,21 @@ function init_btn_login ()
 			"method":"POST",
 			"data":{"login":login,"password":password}
 		}
+
+		$.ajax(options).done(function(res)
+		{
+			$("#connexion").html(res);
+			init_btns_login ();
+		});
+	});
+}
+
+function init_btn_login ()
+{
+	$("#btn-connexion").click(function(e)
+	{
+		e.preventDefault();	
+		var options={"url":"index.php?page=connect"}
 
 		$.ajax(options).done(function(res)
 		{
