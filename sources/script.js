@@ -6,8 +6,9 @@ $(document).ready(function()
 function init_btns_login ()
 {
 	init_btn_login ();
-	init_btn_logoff ();
+	init_btn_logoff ();	
 	init_btn_subscribe ();
+	init_btn_subscribe_valid ();
 	init_btn_reload_login_form ();
 }
 
@@ -32,6 +33,29 @@ function init_btn_login ()
 	});
 }
 
+function init_btn_subscribe_valid ()
+{
+	$("#form_subscribe").submit(function(e)
+	{		
+		var login=$('#new-login').val();
+		var password=$('#new-password').val();
+		var validPassword=$('#confirm-password').val();
+		e.preventDefault();
+		var options={
+			"url":"index.php?page=record",
+			"method":"POST",
+			"data":{"login":login,
+					"password":password,
+					"validation":validPassword}
+		}
+
+		$.ajax(options).done(function(res)
+		{
+			$("#connexion").html(res);
+			init_btns_login ();
+		});
+	});
+}
 function init_btn_logoff ()
 {
 	$('#btn-deconnexion').click(function(e)
