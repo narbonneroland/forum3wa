@@ -13,7 +13,7 @@ function init_btns_login ()
 
 function init_btn_login ()
 {
-	$('#btn-connexion').click(function(e)
+	$("#form_login").submit(function(e)
 	{		
 		var login=$('#login').val();
 		var password=$('#password').val();
@@ -36,7 +36,6 @@ function init_btn_logoff ()
 {
 	$('#btn-deconnexion').click(function(e)
 	{		
-		e.preventDefault();	
 		var options={"url":"index.php?page=deco"}
 
 		$.ajax(options).done(function(res)
@@ -51,7 +50,6 @@ function init_btn_subscribe ()
 {
 	$('#btn-subscribe').click(function(e)
 	{		
-		e.preventDefault();	
 		var options={"url":"index.php?page=subscribe"}
 
 		$.ajax(options).done(function(res)
@@ -66,7 +64,6 @@ function init_btn_reload_login_form ()
 {
 	$('#btn_reload_login_form').click(function(e)
 	{		
-		e.preventDefault();	
 		var options={"url":"index.php?page=connect"}
 
 		$.ajax(options).done(function(res)
