@@ -86,7 +86,7 @@ Class User
 	{
 	
 		$requete="SELECT * FROM user WHERE login='".$this->getLogin()."' AND mdp='".$this->getPassword()."'";
-		var_dump($requete);
+		
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
 		if($nbr==0)
