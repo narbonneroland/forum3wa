@@ -51,7 +51,7 @@ function init_btn_login ()
 
 function init_btn_subscribe_valid ()
 {
-	$("#form_subscribe").submit(function(e)
+	$("#form-subscribe").submit(function(e)
 	{		
 		var login=$('#new-login').val();
 		var password=$('#new-password').val();

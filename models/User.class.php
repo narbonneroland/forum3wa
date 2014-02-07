@@ -104,6 +104,16 @@ Class User
 		}
 	}
 
+	public function createUser($data)
+	{
+		$this->setLogin($data['login']);
+		$this->setPassword($data['password']);
+		$requete="INSERT INTO user (login,mdp,droits,status) VALUES ('".$this->getLogin()."','".$this->getPassword()."',0,0)";
+		$res=mysqli_query($this->db,$requete);
+		$this->id = mysqli_insert_id($this->db);
+		return $this;
+	}
+
 }
 
 
