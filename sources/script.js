@@ -25,7 +25,6 @@ function init_btn_login ()
 
 		$.ajax(options).done(function(res)
 		{
-			alert(res);
 			$("#connexion").html(res);
 			init_btns_login ();
 		});
