@@ -1,22 +1,38 @@
+/* BASE */
 body{
 	width: 1000px;
 	min-height: 800px;
-	border: 1px solid red;
 	margin: 0 auto;
 }
-#navigation{
-	display: block;
-	width: 100%;
-	text-align: right;
-}
-#connexion{
-	display: inline-block;
-	width: 30%;
-	margin-right: 4%;
-}
-header{
-	border: 1px solid blue;
-}
+
+	header{
+		
+	}
+
+
+	#content{
+		
+		min-height: 600px;
+	}
+		#navigation{
+			display: block;
+			width: 100%;
+			text-align: right;
+		}
+		#connexion{
+			display: inline-block;
+			width: 30%;
+			margin-right: 4%;
+		}
+
+
+	footer{
+		text-align: center;
+		padding: 15px;
+	}
+
+
+/* DETAILS */
 header img{
 	display: block;
 	width: 30%;
@@ -49,11 +65,38 @@ header img{
 	border-radius: 15px 15px 15px 15px;
 	margin-bottom: 5px;
 }
-#content{
-	border: 1px solid blue;
-	min-height: 600px;
+#content table{
+	display: block;
+	width: 95%;
+	margin: 20px auto;
+	margin-top: 40px;
 }
-footer{
+#content .description, #content .nbrsujet, #content .nbrmsg, #content .lastmsg{
+	border: 1px solid black;
+	padding-top: 1%;
+}
+#content .title{
+	font-weight: bold;
+}
+#content .description{
+	width: 50%;
+	height: 60px;
+	text-align: left;
+	padding-left: 2%;
+}
+#content .nbrsujet{
+	width: 10%;
+	height: 60px;
 	text-align: center;
-	padding: 15px;
+}
+#content .nbrmsg{
+	width: 10%;
+	height: 60px;
+	text-align: center;
+}
+#content .lastmsg{
+	width: 30%;
+	height: 60px;
+	text-align: left;
+	padding-left: 2%;
 }
