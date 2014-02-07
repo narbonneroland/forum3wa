@@ -3,10 +3,14 @@ body{
 	width: 1000px;
 	min-height: 800px;
 	margin: 0 auto;
+	color: black;
+}
+a{
+	text-decoration: none;
 }
 
 	header{
-		
+		width: 100%;
 	}
 
 
@@ -65,38 +69,124 @@ header img{
 	border-radius: 15px 15px 15px 15px;
 	margin-bottom: 5px;
 }
-#content table{
+#content .liste table{
 	display: block;
 	width: 95%;
 	margin: 20px auto;
 	margin-top: 40px;
 }
-#content .description, #content .nbrsujet, #content .nbrmsg, #content .lastmsg{
+#content .liste .description, #content .liste .nbrsujet, 
+#content .liste .nbrmsg, #content .liste .lastmsg,
+#content .liste .nbrreponse, #content .liste .nbrconsult{
 	border: 1px solid black;
 	padding-top: 1%;
 }
-#content .title{
+#content .liste .title{
 	font-weight: bold;
 }
-#content .description{
+#content .liste .description{
 	width: 50%;
 	height: 60px;
 	text-align: left;
 	padding-left: 2%;
 }
-#content .nbrsujet{
+#content .liste .nbrsujet{
 	width: 10%;
 	height: 60px;
 	text-align: center;
 }
-#content .nbrmsg{
+#content .liste .nbrmsg{
 	width: 10%;
 	height: 60px;
 	text-align: center;
 }
-#content .lastmsg{
+#content .liste .nbrreponse{
+	width: 10%;
+	height: 60px;
+	text-align: center;
+}
+#content .liste .nbrconsult{
+	width: 10%;
+	height: 60px;
+	text-align: center;
+}
+#content .liste .lastmsg{
 	width: 30%;
 	height: 60px;
 	text-align: left;
 	padding-left: 2%;
+}
+#content .message{
+	display: block;
+	width: 95%;
+	min-height: 150px;
+	margin: 20px auto;
+	margin-top: 40px;
+}
+#content .bodymessage{
+	display: block;
+	width: 100%;
+	background-color: #eef1f2;
+}
+#content .headmessage, #content .footmessage{
+	display: block;
+	background-color: white;
+}
+#content .messagetitle, #content .navmessage{
+	background-color: white;
+}
+#content section .messagetitle{
+	float: left;
+	padding: 15px;
+	color: navy;
+	font-size: 20px;
+}
+#content section .navmessage{
+	float: right;
+	color: black;
+	padding: 15px;
+}
+#content section .navmessage span{
+	color: navy;
+}
+#content section .navmessage a{
+	padding: 5px;
+	color: black;
+	background-color: silver;
+}
+#content section .navmessage a:first-child{
+	background-color: white;
+	color: navy;
+}
+#content section .messageuser{
+	float: left;
+	width: 25%;
+	vertical-align: top;
+}
+#content section .messageuser p{
+	color: navy;
+	margin: 20px 20px 0px 20px;
+}
+#content section .messageuser span{
+	display: block;
+	margin: 0px 20px 20px 20px;
+}
+#content section .messagetext{
+	float: right;
+	width: 70%;
+	vertical-align: top;
+}
+#content section .messagetext span{
+	display: block;
+	color: navy;
+	margin: 20px 20px 0px 20px;
+}
+#content section .messagetext p{
+	display: block;
+	padding: 20px;
+}
+#content .footmessage button{
+	display: inline-block;
+	padding: 10px 70px 10px 70px;
+	margin: 10px;
 }
