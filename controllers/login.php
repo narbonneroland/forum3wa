@@ -2,7 +2,6 @@
 
 	$_SESSION['login']=$_POST['login'];
 	$user= new User($db,$_POST);
-	
 	$user=$user->selectUser($_POST);
 	//echo "<pre>".print_r($user,true)."</pre>";
 	
@@ -15,7 +14,7 @@
 	else
 	{
 		$phrase ="Erreur de connection : réessayer ou inscrivez vous";
-		require "views/subscribe.html";
+		require "views/login_error.html";
 	}
 
 	
