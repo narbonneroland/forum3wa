@@ -12,6 +12,9 @@ Class User
 
 	public function __construct($db, $data)
 	{
+			$this->db=$db;
+			if(isset($data['id']))
+				$this->id=intval($data['id']);
 			
 	}
 
