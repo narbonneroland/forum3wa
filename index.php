@@ -19,15 +19,15 @@ $db = mysqli_connect('192.168.1.166','root','coucou','forum');
 if ($db == false)
 	die("erreur de connexion à la base MySQL");
 
-$content = 'controlers/content.php';
+$content = 'controllers/content.php';
 
 if (isset($_GET['page']))
 {	
-	$content = 'controlers/'.$_GET['page'].'.php';
+	$content = 'controllers/'.$_GET['page'].'.php';
 }
 
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']))
 	require($content);
 else 
-	require('controlers/skel.php');
+	require('controllers/skel.php');
 ?>
