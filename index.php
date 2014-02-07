@@ -10,7 +10,7 @@ if(!isset($_SESSION['created']))
 
 function init_session()
 {
-	$_SESSION['Login']="";
+	$_SESSION['login']="";
 	$_SESSION['created']=true;
 }
 
