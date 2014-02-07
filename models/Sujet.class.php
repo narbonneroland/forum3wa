@@ -1,6 +1,6 @@
 <?php
 
-Class Sujet // gère les messages
+Class Sujet 
 {
 	private $id;
 	private $sujet;

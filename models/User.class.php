@@ -12,10 +12,16 @@ Class User
 
 	public function __construct($db, $data)
 	{
-			$this->db=$db;
 			if(isset($data['id']))
 				$this->id=intval($data['id']);
-			
+			if(isset($data['login']))
+				$this->login=mysqli_real_escape_string($this->db,$data['login']);
+			if(isset($data['password']))
+				$this->password=mysqli_real_escape_string($this->db,$data['login']);
+			$this->status=false;
+			$this->datecreation=date("Y/m/d");
+			$this->db=$db;
+			$this->droits="U"; // A->Admin,U->User,M->Modérateur
 	}
 
 	public function setId($id)
