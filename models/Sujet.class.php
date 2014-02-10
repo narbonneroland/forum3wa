@@ -6,6 +6,7 @@ Class Sujet
 	private $id;		// id dans la DB
 	private $titre;		// titredu sujet
 	private $description;	// description falcultativeen desous du titre
+	private $nbrrep;
 	private $nbrview;	// nombre de vues
 	private $statut;	// nouveau ou lu
 	private $datecreation;	// date de création du sujet
@@ -91,8 +92,25 @@ Class Sujet
 	{
 		return $this->parent;
 	}
-	public function save()
+	public function setNbreReponse($id_sujet)
 	{
+<<<<<<< HEAD
+		var_dump($id_sujet);
+		$requete="SELECT * FROM message where message.id_parent='".$id_sujet."'";
+		$res=mysqli_query($this->db,$requete);
+		$nbr=mysqli_num_rows($res);
+		if($nbr==0)
+		{
+			$this->nbrrep=$nbr;	
+		}
+		else
+			$this->nbrrep=$nbr-1;
+		
+	}
+	public function getNbrRep()
+	{
+		return $this->nbrrep;
+=======
 		$id  = $this->id;
 		$titre = $this->titre;
 		$description = $this->description;
@@ -111,6 +129,8 @@ Class Sujet
     	{
     		$resultat = mysqli_query($db, "UPDATE sujet SET titre = '".$titre."', description = '".$description."', nbrview = '".$nbrview."', statut = '".$statut."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_parent = '".$parent."' WHERE id_sujet = '".$id."'");
     	}
+>>>>>>> 9f773faaa6f83ba137f89ea5c9df648bc32e7cde
 	}
+	
 }
 ?>
