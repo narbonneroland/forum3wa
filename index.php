@@ -1,6 +1,8 @@
 <?php // modèle MVC2
 header('Content-Type: text/html; charset=utf8_bin');
-require_once("models/User.class.php");
+
+require_once 'models/ForumManager.class.php';
+
 session_start();
 
 if(!isset($_SESSION['created']))
@@ -14,10 +16,12 @@ function init_session()
 	$_SESSION['created']=true;
 }
 
-$db = mysqli_connect('localhost','root','troiswa','forum');
+$db = mysqli_connect('127.0.0.1','root','troiswa','forum');
 
-if ($db == false)
+if ($db === false)
 	die("erreur de connexion à la base MySQL");
+
+$manager = new ForumManager($db);
 
 $content = 'controllers/content.php';
 
