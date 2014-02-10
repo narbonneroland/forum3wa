@@ -12,6 +12,7 @@ else
 	if ($user->VerifLogin())
 	{
 		$login = $user->GetLogin();
+		$_SESSION['login'] = $user->GetLogin();
 		require "views/logged.html";
 	}
 	else 

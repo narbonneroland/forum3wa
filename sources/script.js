@@ -38,7 +38,7 @@ function init_form_login ()
 
 function init_btn_login ()
 {
-	$("#btn-connexion").click(function(e)
+	$("#btn-connexion").off('click').click(function(e)
 	{
 		e.preventDefault();	
 		var options={"url":"index.php?page=connect"};
@@ -53,7 +53,7 @@ function init_btn_login ()
 
 function init_btn_subscribe_valid ()
 {
-	$("#form-subscribe").submit(function(e)
+	$("#form-subscribe").off('submit').submit(function(e)
 	{
 		var login=$('#new-login').val();
 		var password=$('#new-password').val();
@@ -80,7 +80,13 @@ function init_btn_subscribe_valid ()
 
 			$.ajax(options).done(function(res)
 			{
-				$("#connexion").html(res);
+				if (res == "ERR-INVALID-POST")
+					alert ("Tous les champs doivent être renseignés.");
+				else if (res == "ERR-INVALID-PASSWORD")
+					alert ("Les mots de passe ne sont pas identiques.");
+				else if (res == "ERR-USER-ALREADY-EXISTS")
+					alert ("Login déjà utilisé.");
+				else $("#connexion").html(res);
 				init_btns_login ();
 			});
 		}
@@ -89,7 +95,7 @@ function init_btn_subscribe_valid ()
 
 function init_btn_logoff ()
 {
-	$('#btn-deconnexion').click(function(e)
+	$('#btn-deconnexion').off('click').click(function(e)
 	{		
 		var options={"url":"index.php?page=logoff"};
 
@@ -102,7 +108,7 @@ function init_btn_logoff ()
 }
 function init_btn_accueil ()
 {
-	$('#btn-accueil').click(function(e)
+	$('#btn-accueil').off('click').click(function(e)
 	{		
 		var options={"url":"index.php?page=content"};
 
@@ -117,7 +123,7 @@ function init_btn_accueil ()
 
 function init_btn_subscribe ()
 {
-	$('#btn-subscribe').click(function(e)
+	$('#btn-subscribe').off('click').click(function(e)
 	{		
 		var options={"url":"index.php?page=subscribe"};
 
@@ -131,7 +137,7 @@ function init_btn_subscribe ()
 
 function init_btn_reload_login_form ()
 {
-	$('#btn_reload_login_form').click(function(e)
+	$('#btn_reload_login_form').off('click').click(function(e)
 	{		
 		var options={"url":"index.php?page=connect"};
 

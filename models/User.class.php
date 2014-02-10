@@ -86,5 +86,27 @@ Class User
 		if($nbr == 1) return true;
 		else return false;
 	}
+
+	public function saveUser($data)
+	{
+		$this->setLogin($data['login']);
+		$this->setPassword($data['password']);
+		$requete="INSERT INTO user (login,password,statut,authorized) VALUES ('".$this->getLogin()."','".$this->getPassword()."','utilisateur','1')";
+		$res=mysqli_query($this->db,$requete);
+		$this->id = mysqli_insert_id($this->db);
+		return $this;
+	}
+
+	public function loginExists()
+	{
+		$db = $this->db;
+		$login = $this->getLogin();
+		
+		$resultat = mysqli_query($db, "SELECT * FROM user WHERE login='".$login."'");		
+		$nbr = mysqli_num_rows($resultat);
+		if($nbr > 0) return true;
+		else return false;
+	}
+
 }
 ?>
