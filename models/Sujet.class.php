@@ -94,6 +94,7 @@ Class Sujet
 	}
 	public function setNbreReponse($id_sujet)
 	{
+<<<<<<< HEAD
 		var_dump($id_sujet);
 		$requete="SELECT * FROM message where message.id_parent='".$id_sujet."'";
 		$res=mysqli_query($this->db,$requete);
@@ -109,6 +110,26 @@ Class Sujet
 	public function getNbrRep()
 	{
 		return $this->nbrrep;
+=======
+		$id  = $this->id;
+		$titre = $this->titre;
+		$description = $this->description;
+		$nbrview = $this->nbrview;
+		$statut = $this->statut;
+		$datecreation = $this->datecreation;
+		$auteur = $this->auteur;
+		$parent = $this->parent;
+
+		if ($this->id == 'NULL')
+		{
+			$resultat = mysqli_query($db, "INSERT INTO sujet (titre, description, nbrview, statut, datecreation, id_auteur, id_parent) 
+				VALUES ('".$titre."','".$description."','".$nbrview."','".$statut."','".$datecreation."','".$auteur."','".$parent."')");
+    	}
+    	else
+    	{
+    		$resultat = mysqli_query($db, "UPDATE sujet SET titre = '".$titre."', description = '".$description."', nbrview = '".$nbrview."', statut = '".$statut."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_parent = '".$parent."' WHERE id_sujet = '".$id."'");
+    	}
+>>>>>>> 9f773faaa6f83ba137f89ea5c9df648bc32e7cde
 	}
 	
 }
