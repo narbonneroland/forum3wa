@@ -74,7 +74,7 @@ Class Theme
 	public function setNbreSujets($id_theme)
 	{
 
-		$requete="SELECT * FROM sujet LEFT JOIN theme ON sujet.id_parent='".$id_theme."'";
+		$requete="SELECT * FROM sujet WHERE sujet.id_parent='".$id_theme."'";
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
 		$this->nbrsujet=$nbr;
