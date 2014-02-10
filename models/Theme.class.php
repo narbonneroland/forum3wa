@@ -13,7 +13,7 @@ Class Theme
 	public function __construct($db, $data)
 	{
 		$this->db = $db;
-		if ($data!= 'NULL')
+		if ($data != 'NULL')
 		{
 			$this->id = $data['id_theme'];
 			$this->titre = $data['titre'];
@@ -25,7 +25,7 @@ Class Theme
 	}
 	public function setID($id)
 	{
-		$this->id= $id;
+		$this->id = $id;
 	}
 	public function getID()
 	{
@@ -33,7 +33,7 @@ Class Theme
 	}
 	public function setTitre($titre)
 	{
-		$this->id= $titre;
+		$this->id = $titre;
 	}
 	public function getTitre()
 	{
@@ -41,7 +41,7 @@ Class Theme
 	}
 	public function setNbrSujet($nbrsujet)
 	{
-		$this->id= $nbrsujet;
+		$this->id = $nbrsujet;
 	}
 	public function getNbrSujet()
 	{
@@ -49,7 +49,7 @@ Class Theme
 	}
 	public function setNbrMsg($nbrmsg)
 	{
-		$this->id= $nbrmsg;
+		$this->id = $nbrmsg;
 	}
 	public function getNbrMsg()
 	{
@@ -57,7 +57,7 @@ Class Theme
 	}
 	public function setDatecreation($datecreation)
 	{
-		$this->id= $datecreation;
+		$this->id = $datecreation;
 	}
 	public function getDatecreation()
 	{
@@ -65,7 +65,7 @@ Class Theme
 	}
 	public function setAuteur($auteur)
 	{
-		$this->id= $auteur;
+		$this->id = $auteur;
 	}
 	public function getAuteur()
 	{
@@ -73,7 +73,26 @@ Class Theme
 	}
 	public function save()
 	{
+		$db = $this->db ;
+		if ($db != false)
+		{
+			$id  = $this->id;
+			$titre = $this->titre;
+			$nbrsujet = $this->nbrsujet;
+			$nbrmsg = $this->nbrmsg;
+			$datecreation = $this->datecreation;
+			$auteur = $this->auteur;
 
+			if ($this->id == 'NULL')
+			{
+				$resultat = mysqli_query($db, "INSERT INTO theme (titre, nbrsujet, nbrmsg, datecreation, id_auteur) 
+					VALUES ('".$titre."','".$nbrsujet."','".$nbrmsg."','".$datecreation."','".$auteur."')");
+	    	}
+	    	else
+	    	{
+	    		$resultat = mysqli_query($db, "UPDATE theme SET titre = '".$titre."', nbrsujet = '".$nbrsujet."', nbrmsg = '".$nbrmsg."', datecreation = '".$datecreation."', id_auteur = '".$auteur."' WHERE id_theme = '".$id."'");
+	    	}
+		}
 	}
 }
 ?>
