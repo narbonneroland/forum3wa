@@ -1,3 +1,3 @@
 <?php 
-	require "views/login.html";
+	require "controllers/login.php";
 ?>

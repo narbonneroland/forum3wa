@@ -5,107 +5,88 @@ Class User
 	private $id;
 	private $login;
 	private $password;
-	private $droits; //Admin, Modérateur, User
-	private $status; // Bannis = true, false par défaut
+	private $statut;		// admin, modérateur, user
+	private $authorized;	// authorisé ou pas (banni ou non)
 	private $datecreation;
 	private $db;
 
 	public function __construct($db, $data)
 	{
-			$this->db=$db;
-			if(isset($data['id']))
-				$this->id=intval($data['id']);
-			if(isset($data['login']))
-				$this->login=mysqli_real_escape_string($this->db,$data['login']);
-			if(isset($data['password']))
-				$this->password=mysqli_real_escape_string($this->db,$data['password']);
-			
+		$this->db = $db;
+		if ($data != 'NULL')
+		{
+			$this->id = $data['id_user'];
+			$this->login = $data['login'];
+			$this->password = $data['password'];
+			$this->statut = $data['statut'];
+			$this->statut = $data['authorized'];
+			$this->datecreation = $data['datecreation'];
+		}
 	}
 
-	public function setId($id)
+	public function setID($id)
 	{
-		$this->id=$id;
+		$this->id = $id;
 	}
-
-	public function getId()
+	public function getID()
 	{
 		return $this->id;
 	}
-
 	public function setLogin($login)
 	{
-		$this->login=$login;
+		$this->login = $login;
 	}
-	
 	public function getLogin()
 	{
 		return $this->login;
 	}
-
 	public function setPassword($password)
 	{
-		$this->password=$password;
+		$this->password = $password;
 	}
 	public function getPassword()
 	{
 		return $this->password;
 	}
-
-
-	public function setDroits($droit)
+	public function setStatut($statut)
 	{
-		$this->droit=$droit;
+		$this->statut=$statut;
 	}
-
-	public function getDroit()
+	public function getStatut()
 	{
-		return $this->droit;
+		return $this->statut;
 	}
-
-	public function setStatus($status=false)
+	public function setAuthorized($authorized = false)
 	{
-		$this->status=$status;
+		$this->authorized = $authorized;
 	}
-
-	public function getStatus()
+	public function getAuthorized()
 	{
-		return $this->bannis;
+		return $this->authorized;
 	}
-
 	public function setDateCreation($datecreation)
 	{
-		$this->datecreation=$datecreation;
+		$this->datecreation = $datecreation;
 	}
-
 	public function getDateCreation()
 	{
 		return $this->datecreation;
 	}
-
-	public function selectUser($data)
+	public function VerifLogin($data)
 	{
-	
-		$requete="SELECT * FROM user WHERE login='".$this->getLogin()."' AND mdp='".$this->getPassword()."'";
+		$db = $this->db;
+		$login = $this->getLogin();
+		$password = $this->getPassword();
 		
-		$res=mysqli_query($this->db,$requete);
-		$nbr=mysqli_num_rows($res);
-		if($nbr==0)
-		{
-			return false;
-		}
+		$resultat = mysqli_query($db, "SELECT * FROM user WHERE login='".$login."' AND password='".$password."'");
+		
+		$nbr = mysqli_num_rows($resultat);
+		$data = mysqli_fetch_assoc($resultat);
+
+		if($nbr === 1)
+			return true;
 		else
-		{
-			$record=mysqli_fetch_assoc($res);
-			$this->setId($record['id']);
-			$this->setDroits($record['droits']);
-			$this->setStatus($record['status']);	
-			$this->setDateCreation($record['datecreate']);
-			return $this;
-		}
+			return false;
 	}
-
 }
-
-
-
 ?>
