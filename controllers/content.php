@@ -15,7 +15,9 @@ if ($db != false)
 		{
 			$id = $theme[$i]->getID();
 			$titre = $theme[$i]->getTitre();
+			$theme[$i]->setNbreSujets($id);
 			$nbrsujet = $theme[$i]->getNbrSujet();
+			$theme[$i]->setNbreMessages($id);
 			$nbrmsg = $theme[$i]->getNbrMsg();
 			$date = $theme[$i]->getDatecreation();
 			require 'views/contentTheme.html';
@@ -42,6 +44,8 @@ if ($db != false)
 			$id = $sujet[$i]->getID();
 			$titre = $sujet[$i]->getTitre();
 			$description = $sujet[$i]->getDescription();
+			$sujet[$i]->setNbreReponse($id);
+			$rep=$sujet[$i]->getNbrRep();
 			$view = $sujet[$i]->getNbrView();
 			$date = $sujet[$i]->getDatecreation();
 			require 'views/contentSujet.html';

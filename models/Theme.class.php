@@ -71,9 +71,19 @@ Class Theme
 	{
 		return $this->auteur;
 	}
-	public function save()
+	public function setNbreSujets($id_theme)
 	{
-
+		$requete="SELECT * FROM sujet LEFT JOIN theme ON sujet.id_parent='".$id_theme."'";
+		$res=mysqli_query($this->db,$requete);
+		$nbr=mysqli_num_rows($res);
+		$this->nbrsujet=$nbr;
+	}
+	public function setNbreMessages($id_theme)
+	{
+		$requete="SELECT * FROM message LEFT JOIN theme ON message.id_parent='".$id_theme."'";
+		$res=mysqli_query($this->db,$requete);
+		$nbr=mysqli_num_rows($res);
+		$this->nbrmsg=$nbr;
 	}
 }
 ?>
