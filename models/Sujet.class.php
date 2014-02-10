@@ -25,7 +25,7 @@ Class Sujet
 			$this->statut = $data['statut'];
 			$this->datecreation = $data['datecreation'];
 			$this->auteur = $data['id_auteur'];
-			$this->parent = $data['id_parent'];
+			$this->parent = $data['id_theme'];
 		}
 	}
 	public function setID($id)
@@ -95,7 +95,7 @@ Class Sujet
 	public function setNbreReponse($id_sujet)
 	{
 		var_dump($id_sujet);
-		$requete="SELECT * FROM message where message.id_parent='".$id_sujet."'";
+		$requete="SELECT * FROM message where message.id_sujet='".$id_sujet."'";
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
 		if($nbr==0)

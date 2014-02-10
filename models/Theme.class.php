@@ -74,14 +74,14 @@ Class Theme
 	public function setNbreSujets($id_theme)
 	{
 
-		$requete="SELECT * FROM sujet WHERE sujet.id_parent='".$id_theme."'";
+		$requete="SELECT * FROM sujet WHERE sujet.id_theme='".$id_theme."'";
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
 		$this->nbrsujet=$nbr;
 	}
 	public function setNbreMessages($id_theme)
 	{
-		$requete="SELECT * FROM message LEFT JOIN theme ON message.id_parent='".$id_theme."'";
+		$requete="SELECT * FROM message WHERE message.id_theme='".$id_theme."'";
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
 		$this->nbrmsg=$nbr;
@@ -90,6 +90,10 @@ Class Theme
 	{
 		$requete="SELECT id_auteur,datecreation FROM message Where id_theme='".$id_theme."' ORDER BY datecreation DESC limit 0,1";
 		$db = $this->db ;
+		
+	}
+	public function save()
+	{
 		if ($db != false)
 		{
 			$id  = $this->id;
