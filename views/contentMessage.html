@@ -1,11 +1,11 @@
 <div class="bodymessage clearfix">
 	<div class="messageuser">
-		<p><?php echo "USER"; ?></p>
-		<span><?php echo "ADMIN OU PAS"; ?></span>
+		<p><?php echo $user; ?></p>
+		<span><?php echo $statut; ?></span>
 		<span><?php echo "Messages postés : NBR MSG"; ?></span>
 	</div>
 	<div class="messagetext">
-		<span>par <a href="#"><?php echo "USER</a> ".$date; ?></span>
+		<span><a href="#"><?php echo $user."</a> ".$date; ?></span>
 		<p>
 		<?php echo $content; ?>
 		</p>

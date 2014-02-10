@@ -7,6 +7,8 @@ Class Message
 	private $contenu;	// description falcultativeen desous du titre
 	private $datecreation;	// date de création du sujet
 	private $auteur;	// id de l'user qui l'a créé
+	private $nomauteur; //login de l'auteur
+	private $statut; //Administateur,utilisateur,autre
 	private $sujet;	// id du sujet parent
 	private $theme; //id du theme parent
 
@@ -55,6 +57,14 @@ Class Message
 	{
 		return $this->auteur;
 	}
+	public function setNomAuteur($nom)
+	{
+		$this->nomauteur = $nom;
+	}
+	public function getNomAuteur()
+	{
+		return $this->nomauteur;
+	}
 	public function setSujet($id)
 	{
 		$this->sujet = $id;
@@ -62,6 +72,18 @@ Class Message
 	public function getSujet()
 	{
 		return $this->sujet;
+	}
+	public function getStatut()
+	{
+		return $this->statut;
+	}
+	public function setUser($id_auteur)
+	{
+		$requete="SELECT * FROM user WHERE id_user=".$id_auteur;
+		$res=mysqli_query($this->db,$requete);
+		$record=mysqli_fetch_assoc($res);
+		$this->nomauteur=$record['login'];
+		$this->statut=$record['statut'];
 	}
 	public function save()
 	{
@@ -71,7 +93,7 @@ Class Message
 		$datecreation = $this->datecreation;
 		$auteur = $this->auteur;
 		$sujet = $this->sujet;
-
+		
 
 		if ($this->id == 'NULL')
 		{
