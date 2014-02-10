@@ -85,5 +85,9 @@ Class Theme
 		$nbr=mysqli_num_rows($res);
 		$this->nbrmsg=$nbr;
 	}
+	public function setDernierMessage($id_theme)
+	{
+		$requete="SELECT id_auteur,datecreation FROM message Where id_theme='".$id_theme."' ORDER BY datecreation DESC limit 0,1";
+	}
 }
 ?>
