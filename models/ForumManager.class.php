@@ -93,7 +93,7 @@ Class ForumManager
 			}
 			else if($test == false)  // affichage au clic
 			{
-				$resultat = mysqli_query($db, "SELECT * FROM sujet WHERE id_parent = '".$id."'");
+				$resultat = mysqli_query($db, "SELECT * FROM sujet WHERE id_theme = '".$id."'");
 
 				$tableSujet = array();
 				while($data = mysqli_fetch_assoc($resultat))
@@ -125,7 +125,7 @@ Class ForumManager
 		$db = $this->db;
 		if ($db != false)
 		{
-			$resultat = mysqli_query($db, "SELECT * FROM message WHERE id_parent = '".$id."' ORDER BY datecreation DESC");
+			$resultat = mysqli_query($db, "SELECT * FROM message WHERE id_sujet = '".$id."' ORDER BY datecreation DESC");
 
 			$tableMessage = array();
 			while($data = mysqli_fetch_assoc($resultat))

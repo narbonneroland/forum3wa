@@ -7,7 +7,7 @@ Class Message
 	private $contenu;	// description falcultativeen desous du titre
 	private $datecreation;	// date de création du sujet
 	private $auteur;	// id de l'user qui l'a créé
-	private $parent;	// id du sujet parent
+	private $sujet;	// id du sujet parent
 
 	public function __construct($db, $data)
 	{
@@ -18,7 +18,7 @@ Class Message
 			$this->contenu = $data['content'];
 			$this->datecreation = $data['datecreation'];
 			$this->auteur = $data['id_auteur'];
-			$this->parent = $data['id_parent'];
+			$this->sujet = $data['id_sujet'];
 		}
 	}
 	public function setID($id)
@@ -53,13 +53,13 @@ Class Message
 	{
 		return $this->auteur;
 	}
-	public function setParent($id)
+	public function setSujet($id)
 	{
-		$this->parent = $id;
+		$this->sujet = $id;
 	}
-	public function getParent()
+	public function getSujet()
 	{
-		return $this->parent;
+		return $this->sujet;
 	}
 	public function save()
 	{
@@ -68,16 +68,17 @@ Class Message
 		$description = $this->description;
 		$datecreation = $this->datecreation;
 		$auteur = $this->auteur;
-		$parent = $this->parent;
+		$sujet = $this->sujet;
+
 
 		if ($this->id == 'NULL')
 		{
-			$resultat = mysqli_query($db, "INSERT INTO message (content, datecreation, id_auteur, id_parent) 
+			$resultat = mysqli_query($db, "INSERT INTO message (content, datecreation, id_auteur, id_sujet) 
 				VALUES ('".$content."','".$datecreation."','".$auteur."','".$parent."')");
     	}
     	else
     	{
-    		$resultat = mysqli_query($db, "UPDATE message SET content = '".$content."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_parent = '".$parent."' WHERE id_message = '".$id."'");
+    		$resultat = mysqli_query($db, "UPDATE message SET content = '".$content."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_sujet = '".$sujet."' WHERE id_message = '".$id."'");
     	}
 	}
 }

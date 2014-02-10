@@ -16,7 +16,7 @@ function init_session()
 	$_SESSION['created']=true;
 }
 
-$db = mysqli_connect('127.0.0.1','root','coucou','forum');
+$db = mysqli_connect('127.0.0.1','root','troiswa','forum');
 
 if ($db === false)
 	die("erreur de connexion à la base MySQL");
