@@ -10,8 +10,10 @@ Class Sujet
 	private $nbrview;	// nombre de vues
 	private $statut;	// nouveau ou lu
 	private $datecreation;	// date de création du sujet
-	private $auteur;	// id de l'user qui l'a créé
-	private $parent;	// id du sujet parent
+	private $auteur;
+	private $nomauteur;	// id de l'user qui l'a créé
+	private $id_sujet;	// id du sujet parent
+	private $id_theme; //id du theme parent
 
 	public function __construct($db, $data)
 	{
@@ -25,7 +27,8 @@ Class Sujet
 			$this->statut = $data['statut'];
 			$this->datecreation = $data['datecreation'];
 			$this->auteur = $data['id_auteur'];
-			$this->parent = $data['id_theme'];
+			$this->id_sujet=$data['id_sujet'];
+			$this->id_theme = $data['id_theme'];
 		}
 	}
 	public function setID($id)
@@ -84,17 +87,28 @@ Class Sujet
 	{
 		return $this->auteur;
 	}
-	public function setParent($id)
+	public function setIdSujet($id)
 	{
-		$this->parent = $id;
+		$this->id_sujet = $id;
 	}
-	public function getParent()
+	public function getIdSujet()
 	{
-		return $this->parent;
+		return $this->id_sujet;
+	}
+	public function setIdTheme($id)
+	{
+		$this->id_theme = $id;
+	}
+	public function getIdTheme()
+	{
+		return $this->id_theme;
+	}
+	public function getNomAuteur()
+	{
+		return $this->nomauteur;
 	}
 	public function setNbreReponse($id_sujet)
 	{
-		var_dump($id_sujet);
 		$requete="SELECT * FROM message where message.id_sujet='".$id_sujet."'";
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
@@ -128,6 +142,27 @@ Class Sujet
     		$resultat = mysqli_query($db, "UPDATE sujet SET titre = '".$titre."', description = '".$description."', nbrview = '".$nbrview."', statut = '".$statut."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_parent = '".$parent."' WHERE id_sujet = '".$id."'");
     	}
 	}
-	
+	public function setDernierMessage($id_sujet)
+	{
+		$requete="SELECT id_auteur,datecreation FROM message Where id_sujet=".$id_sujet." ORDER BY datecreation DESC limit 0,1";
+		$db = $this->db ;
+		$res=mysqli_query($this->db,$requete);
+		$nbr=mysqli_num_rows($res);
+		if($nbr!=0)
+		{
+			$record=mysqli_fetch_assoc($res);
+			$this->auteur=$record["id_auteur"];
+			$this->datecreation=$record["datecreation"];
+			$requete="SELECT login FROM user WHERE id_user=".$this->auteur;
+			$res=mysqli_query($this->db,$requete);
+			$record=mysqli_fetch_assoc($res);
+			$this->nomauteur=$record['login'];
+		}
+		else
+		{
+			$this->datecreation="";
+		}
+
+	}
 }
 ?>
