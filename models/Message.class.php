@@ -8,6 +8,7 @@ Class Message
 	private $datecreation;	// date de création du sujet
 	private $auteur;	// id de l'user qui l'a créé
 	private $sujet;	// id du sujet parent
+	private $theme; //id du theme parent
 
 	public function __construct($db, $data)
 	{
@@ -19,6 +20,7 @@ Class Message
 			$this->datecreation = $data['datecreation'];
 			$this->auteur = $data['id_auteur'];
 			$this->sujet = $data['id_sujet'];
+			$this->theme = $data['id_theme'];
 		}
 	}
 	public function setID($id)
@@ -73,8 +75,8 @@ Class Message
 
 		if ($this->id == 'NULL')
 		{
-			$resultat = mysqli_query($db, "INSERT INTO message (content, datecreation, id_auteur, id_sujet) 
-				VALUES ('".$content."','".$datecreation."','".$auteur."','".$parent."')");
+			$resultat = mysqli_query($db, "INSERT INTO message (content, datecreation, id_auteur, id_sujet, id_theme) 
+				VALUES ('".$content."','".$datecreation."','".$auteur."','".$sujet."')");
     	}
     	else
     	{
