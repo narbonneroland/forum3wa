@@ -9,14 +9,14 @@ else
 {
 	$user = new User ($db, $_POST);
 
-	if ($user->VerifLogin($_POST))
+	if ($user->VerifLogin())
 	{
 		$login = $user->GetLogin();
 		require "views/logged.html";
 	}
 	else 
 	{
-		$phrase = "Nom d'utilisateur inconnu ou mot de passe incorrect";
+		$phrase = "Identifiant ou mot de passe incorrect";
 		require "views/login_error.html";
 	}
 }

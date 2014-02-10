@@ -69,6 +69,14 @@ header img{
 	border-radius: 15px 15px 15px 15px;
 	margin-bottom: 5px;
 }
+#connexion .error_login{
+	
+	text-align: center;
+}
+#connexion .error_message{
+	color: red;
+	margin-bottom: 1em;
+}
 #content .liste table{
 	display: block;
 	width: 95%;

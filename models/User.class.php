@@ -72,21 +72,19 @@ Class User
 	{
 		return $this->datecreation;
 	}
-	public function VerifLogin($data)
+
+	public function VerifLogin()
 	{
 		$db = $this->db;
 		$login = $this->getLogin();
 		$password = $this->getPassword();
 		
-		$resultat = mysqli_query($db, "SELECT * FROM user WHERE login='".$login."' AND password='".$password."'");
-		
+		$resultat = mysqli_query($db, "SELECT * FROM user WHERE login='".$login."' AND password='".$password."'");		
 		$nbr = mysqli_num_rows($resultat);
-		$data = mysqli_fetch_assoc($resultat);
+		//$data = mysqli_fetch_assoc($resultat);
 
-		if($nbr === 1)
-			return true;
-		else
-			return false;
+		if($nbr == 1) return true;
+		else return false;
 	}
 }
 ?>
