@@ -7,6 +7,7 @@ $confirm=$_POST['validation'];
 
 $test_mdp=verif($mdp,$confirm);
 
+
 if($test_mdp==true)
 {
 	$user= new User($db,$_POST);
@@ -23,6 +24,7 @@ else
 
 function verif($mdp1,$mdp2)
 {
+	echo "Fonction verif";
 	if($mdp1==$mdp2)
 		return true;
 	else

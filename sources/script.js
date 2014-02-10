@@ -55,27 +55,40 @@ function init_btn_login ()
 
 function init_btn_subscribe_valid ()
 {
-	$("#form_subscribe").submit(function(e)
-	{		
+	$("#form-subscribe").submit(function(e)
+	{
 		var login=$('#new-login').val();
 		var password=$('#new-password').val();
 		var validPassword=$('#confirm-password').val();
 		e.preventDefault();
-		var options={
-			"url":"index.php?page=record",
-			"method":"POST",
-			"data":{"login":login,
-					"password":password,
-					"validation":validPassword}
-		};
 
-		$.ajax(options).done(function(res)
+		if (login == '' || password == '' || validPassword == '')
 		{
-			$("#connexion").html(res);
-			init_btns_login ();
-		});
+			alert ("Tous les champs doivent être renseignés.");
+		}
+		else if (password != validPassword)
+		{
+			alert ("Les mots de passe ne sont pas identiques.");
+		}
+		else
+		{
+			var options={
+				"url":"index.php?page=record",
+				"method":"POST",
+				"data":{"login":login,
+						"password":password,
+						"validation":validPassword}
+			};
+
+			$.ajax(options).done(function(res)
+			{
+				$("#connexion").html(res);
+				init_btns_login ();
+			});
+		}
 	});
 }
+
 function init_btn_logoff ()
 {
 	$('#btn-deconnexion').click(function(e)

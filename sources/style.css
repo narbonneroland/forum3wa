@@ -70,13 +70,23 @@ header img{
 	margin-bottom: 5px;
 }
 #connexion .error_login{
-	
+	padding-top: 0.5em;
 	text-align: center;
 }
 #connexion .error_message{
 	color: red;
-	margin-bottom: 1em;
+	margin-top: 1em;
 }
+
+#form-subscribe
+{
+	text-align:center;
+}
+#form-subscribe h2
+{
+	padding-bottom: 1em;
+}
+
 #content .liste table{
 	display: block;
 	width: 95%;
