@@ -19,7 +19,9 @@ if ($db != false)
 			$nbrsujet = $theme[$i]->getNbrSujet();
 			$theme[$i]->setNbreMessages($id);
 			$nbrmsg = $theme[$i]->getNbrMsg();
-			$date = $theme[$i]->getDatecreation();
+			$theme[$i]->setDernierMessage($id);
+			$auteur=$theme[$i]->getNomAuteur();
+			$date=$theme[$i]->getDatecreation();
 			require 'views/contentTheme.html';
 		$i++;
 		}
@@ -46,6 +48,8 @@ if ($db != false)
 			$description = $sujet[$i]->getDescription();
 			$sujet[$i]->setNbreReponse($id);
 			$rep=$sujet[$i]->getNbrRep();
+			$sujet[$i]->setDernierMessage($id);
+			$auteur=$sujet[$i]->getNomAuteur();
 			$view = $sujet[$i]->getNbrView();
 			$date = $sujet[$i]->getDatecreation();
 			require 'views/contentSujet.html';
