@@ -1,61 +1,69 @@
 <?php
-require_once("models/Sujet.class.php");
-
-Class Message // gère les messages
+Require_once "models/Sujet.class.php";
+Class Message
 {
-	private $id;
-	private $message;
-	private $datecreation;
-	private $id_auteur;
 	private $db;
+	private $id;		// id dans la DB
+	private $contenu;	// description falcultativeen desous du titre
+	private $datecreation;	// date de création du sujet
+	private $auteur;	// id de l'user qui l'a créé
+	private $parent;	// id du sujet parent
 
-	private function __construct($db,$data)
+	public function __construct($db, $data)
 	{
-
+		$this->db = $db;
+		if ($data != 'NULL')
+		{
+			$this->id = $data['id_message'];
+			$this->contenu = $data['content'];
+			$this->datecreation = $data['datecreation'];
+			$this->auteur = $data['id_auteur'];
+			$this->parent = $data['id_parent'];
+		}
 	}
-
-	public function setId($id)
+	public function setID($id)
 	{
-		$this->id=$id;
+		$this->id = $id;
 	}
-	public function getId()
+	public function getID()
 	{
 		return $this->id;
 	}
-	public function setMessage($message)
+	public function setContenu($contenu)
 	{
-		$this->message=$message;
+		$this->contenu = $contenu;
 	}
-	public function setMessage()
+	public function getContenu()
 	{
-		return $this->message;
+		return $this->contenu;
 	}
-	public function setDateCreation($datecreation)
+	public function setDatecreation($datecreation)
 	{
-		$this->datecreation=$datecreation;
+		$this->datecreation = $datecreation;
 	}
-	public function getDateCreation()
-	{
-		return $this->datecreation;
-	}
-	public function setDateCreation($datecreation)
-	{
-		$this->datecreation=$datecreation;
-	}
-	public function getDateCreation()
+	public function getDatecreation()
 	{
 		return $this->datecreation;
 	}
-	public function setId_Auteur($id_auteur)
+	public function setAuteur($id)
 	{
-		$this->id_auteur=$id_auteur;
+		$this->auteur = $id;
 	}
-	public function getId_Auteur()
+	public function getAuteur()
 	{
-		return $this->id_auteur;
+		return $this->auteur;
 	}
+	public function setParent($id)
+	{
+		$this->parent = $id;
+	}
+	public function getParent()
+	{
+		return $this->parent;
+	}
+	public function save()
+	{
 
-
+	}
 }
-
 ?>
