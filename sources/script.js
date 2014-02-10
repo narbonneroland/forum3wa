@@ -1,5 +1,3 @@
-
-
 $(document).ready(function()
 {
 	init_btns_login(); // Initialisation des boutons connexion / Deconnexion
@@ -132,6 +130,7 @@ function init_btn_reload_login_form ()
 	});
 }
 
+// RECUPERATION des listes
 function getThemeList()
 {
 	var cat = "theme";
@@ -147,6 +146,9 @@ function getSujetList()
 	$.ajax("index.php?page=content&id_theme="+id+"&cat="+cat).done(function(resultat) {
 		$(".liste").html(resultat);
 		$(".descriptionSujet").click(getMessageList);
+		$("#btn-newsujet").click(showFormSujet);
+		$("#btn-editsujet").click(showFormSujet);
+		
 	});
 }
 function getMessageList()
@@ -155,5 +157,62 @@ function getMessageList()
 	var cat = "message";
 	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
 		$(".liste").html(resultat);
+	});
+}
+
+// AJOUT et MODIFICATION de Sujets
+function showFormSujet(){
+
+	var obj = "showform";
+	$.ajax("index.php?page=form&objet="+obj).done(function(resultat) {
+		$(".liste").html(resultat);
+		$("#btn-valid-formAdd").click(formSujetAdd);
+		$("#btn-valid-formModif").click(formSujetModif);
+	});
+}
+function formSujetAdd()
+{
+	$("#formSujetAdd").submit(function(e) {
+	e.preventDefault();
+
+		var obj = "sujetaddform";
+		var titre = $("#titre").val();
+		var description = $("#description").val();
+
+		var options = { "url" : "index.php?page=form",
+						"method" : "POST",
+						"data" : {
+							"objet" : obj,
+							"titre" : titre,
+							"description" : description
+						}
+		};
+		$.ajax(options).done(function(resultat) {
+			alert("fin");
+			getThemeList();
+		});
+	});
+}
+function formSujetModif()
+{
+	$("#formSujetModif").submit(function(e) {
+	e.preventDefault();
+
+		var obj = "sujetmodifform";
+		var titre = $("#titre").val();
+		var description = $("#description").val();
+
+		var options = { "url" : "index.php?page=form",
+						"method" : "POST",
+						"data" : {
+							"objet" : obj,
+							"titre" : titre,
+							"description" : description
+						}
+		};
+		$.ajax(options).done(function(resultat) {
+			alert("fin");
+			getThemeList();
+		});
 	});
 }
