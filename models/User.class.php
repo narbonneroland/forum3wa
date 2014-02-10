@@ -15,12 +15,12 @@ Class User
 		$this->db = $db;
 		if ($data != 'NULL')
 		{
-			$this->id = $data['id_user'];
-			$this->login = $data['login'];
-			$this->password = $data['password'];
-			$this->statut = $data['statut'];
-			$this->statut = $data['authorized'];
-			$this->datecreation = $data['datecreation'];
+			if (isset ($data['id_user'])) $this->id = $data['id_user'];
+			if (isset ($data['login'])) $this->login = $data['login'];
+			if (isset ($data['password'])) $this->password = $data['password'];
+			if (isset ($data['statut'])) $this->statut = $data['statut'];
+			if (isset ($data['authorized'])) $this->statut = $data['authorized'];
+			if (isset ($data['datecreation'])) $this->datecreation = $data['datecreation'];
 		}
 	}
 
