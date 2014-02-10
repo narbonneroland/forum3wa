@@ -63,7 +63,22 @@ Class Message
 	}
 	public function save()
 	{
+		$id  = $this->id;
+		$content = $this->contenu;
+		$description = $this->description;
+		$datecreation = $this->datecreation;
+		$auteur = $this->auteur;
+		$parent = $this->parent;
 
+		if ($this->id == 'NULL')
+		{
+			$resultat = mysqli_query($db, "INSERT INTO message (content, datecreation, id_auteur, id_parent) 
+				VALUES ('".$content."','".$datecreation."','".$auteur."','".$parent."')");
+    	}
+    	else
+    	{
+    		$resultat = mysqli_query($db, "UPDATE message SET content = '".$content."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_parent = '".$parent."' WHERE id_message = '".$id."'");
+    	}
 	}
 }
 ?>
