@@ -73,7 +73,7 @@ Class Theme
 	}
 	public function setNbreSujets($id_theme)
 	{
-<<<<<<< HEAD
+
 		$requete="SELECT * FROM sujet LEFT JOIN theme ON sujet.id_parent='".$id_theme."'";
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
@@ -89,7 +89,6 @@ Class Theme
 	public function setDernierMessage($id_theme)
 	{
 		$requete="SELECT id_auteur,datecreation FROM message Where id_theme='".$id_theme."' ORDER BY datecreation DESC limit 0,1";
-=======
 		$db = $this->db ;
 		if ($db != false)
 		{
@@ -110,7 +109,6 @@ Class Theme
 	    		$resultat = mysqli_query($db, "UPDATE theme SET titre = '".$titre."', nbrsujet = '".$nbrsujet."', nbrmsg = '".$nbrmsg."', datecreation = '".$datecreation."', id_auteur = '".$auteur."' WHERE id_theme = '".$id."'");
 	    	}
 		}
->>>>>>> 9f773faaa6f83ba137f89ea5c9df648bc32e7cde
 	}
 }
 ?>
