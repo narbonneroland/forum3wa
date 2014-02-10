@@ -12,6 +12,7 @@ Class Sujet
 	private $auteur;	// id de l'user qui l'a créé
 	private $parent;	// id du sujet parent
 
+<<<<<<< HEAD
 	public function __construct($db, $data)
 	{
 		$this->db = $db;
@@ -93,6 +94,66 @@ Class Sujet
 	}
 	public function save()
 	{
+=======
+	public function __construct($db)
+	{
+		$this->db=$db;
+	}
+
+	public function setId($id)
+	{
+		$this->id=$id;
+	}
+	public function setSujet($sujet)
+	{
+		$this->sujet=$sujet;
+	}
+	public function setSousTitre($soustitre)
+	{
+		$this->soustitre=$soustitre;
+	}
+	public function setAuteur($id_auteur)
+	{
+		$this->id_auteur=$id_auteur;
+	}
+	public function setStasus($status)
+	{
+		$this->status=$status;
+	}
+	public function getId()
+	{
+		return $this->id;
+	}
+	public function getSujet()
+	{
+		return $this->sujet;
+	}
+	public function getSousTitre()
+	{
+		return $this->soustitre;
+	}
+	public function getDateCreation()
+	{
+		return $this->datecreation;
+	}
+	public function getNbreLu()
+	{
+		return $this->nbre_lu;
+	}
+	public function getAuteur()
+	{
+		return $this->id_auteur;
+	}
+	public function getStatus()
+	{
+		return $this->status;
+	}
+	public function createMessage($db,$data)
+	{
+		
+	}
+}
+>>>>>>> 20be2dd3489f490cf00c4fd6b508d6f8a8e0e056
 
 	}
 }
