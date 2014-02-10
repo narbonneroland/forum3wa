@@ -75,8 +75,9 @@ header img{
 	margin: 20px auto;
 	margin-top: 40px;
 }
-#content .liste .description, #content .liste .nbrsujet, 
-#content .liste .nbrmsg, #content .liste .lastmsg,
+#content .liste .description, #content .liste .descriptionTheme, 
+#content .liste .descriptionSujet, #content .liste .descriptionMessage, 
+#content .liste .nbrsujet, #content .liste .nbrmsg, #content .liste .lastmsg,
 #content .liste .nbrreponse, #content .liste .nbrconsult{
 	border: 1px solid black;
 	padding-top: 1%;
@@ -84,7 +85,8 @@ header img{
 #content .liste .title{
 	font-weight: bold;
 }
-#content .liste .description{
+#content .liste .description, #content .liste .descriptionTheme, 
+#content .liste .descriptionSujet, #content .liste .descriptionMessage{
 	width: 50%;
 	height: 60px;
 	text-align: left;
