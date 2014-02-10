@@ -125,7 +125,7 @@ Class ForumManager
 		$db = $this->db;
 		if ($db != false)
 		{
-			$resultat = mysqli_query($db, "SELECT * FROM message WHERE id_sujet = '".$id."' ORDER BY datecreation DESC");
+			$resultat = mysqli_query($db, "SELECT * FROM message WHERE id_sujet = '".$id."' ORDER BY datecreation ASC");
 
 			$tableMessage = array();
 			while($data = mysqli_fetch_assoc($resultat))

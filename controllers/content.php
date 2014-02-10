@@ -73,6 +73,13 @@ if ($db != false)
 		$i = 0;
 		while(isset($message[$i]))
 		{
+			$id_user =$message[$i]->getAuteur();
+		
+			$message[$i]->setUser($id_user);
+			$user = $message[$i]->getNomAuteur();
+		
+			$statut = $message[$i]->getStatut();
+		
 			$content = $message[$i]->getContenu();
 			$date = $message[$i]->getDatecreation();
 			require 'views/contentMessage.html';
