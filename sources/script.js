@@ -183,15 +183,21 @@ function getMessageList()
 // AJOUT et MODIFICATION de Sujets
 function showFormSujet(){
 
-	var obj = "showform";
-	var id_theme=$("#btn-newsujet").attr("theme");
-	
-	$.ajax("index.php?page=form&objet="+obj).done(function(resultat) {
-		$(".liste").html(resultat);
-		$("#btn-valid-formAdd").click(formSujetAdd(id_theme));
-		$("#btn-valid-formModif").click(formSujetModif);
-	});
+	if ($("#connexion").find("p").attr("iduser") == undefined)
+		alert ("Vous devez être connecté pour pouvoir ajouter un nouveau sujet");
+	else
+	{
+		var obj = "showform";
+		var id_theme=$("#btn-newsujet").attr("theme");
+		
+		$.ajax("index.php?page=form&objet="+obj).done(function(resultat) {
+			$(".liste").html(resultat);
+			$("#btn-valid-formAdd").click(formSujetAdd(id_theme));
+			$("#btn-valid-formModif").click(formSujetModif);
+		});
+	}
 }
+
 function formSujetAdd(id_theme)
 {
 
@@ -202,6 +208,7 @@ function formSujetAdd(id_theme)
 		var obj = "sujetaddform";
 		var titre = $("#titre").val();
 		var description = $("#description").val();
+		var content = $('#sujet_content').val();
 
 		var options = { "url" : "index.php?page=form&objet="+obj,
 						"method" : "POST",
@@ -210,7 +217,8 @@ function formSujetAdd(id_theme)
 							"id_theme":id_theme,
 							"titre" : titre,
 							"description" : description,
-							"id_auteur" : auteur
+							"id_auteur" : auteur,
+							"content" : content
 						}
 		};
 		$.ajax(options).done(function(resultat) {
