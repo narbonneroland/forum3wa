@@ -79,11 +79,14 @@ Class ForumManager
 	}
 	function getSujet($id,$test)
 	{
+
 		$db = $this->db;
+
 		if ($db != false)
 		{
 			if($test == true) // affichage du titre du Sujet dans liste des Messages
 			{
+				
 				$resultat = mysqli_query($db, "SELECT * FROM sujet WHERE id_sujet ='".$id."'");
 
 				$data = mysqli_fetch_assoc($resultat);
@@ -93,6 +96,7 @@ Class ForumManager
 			}
 			else if($test == false)  // affichage au clic
 			{
+				
 				$resultat = mysqli_query($db, "SELECT * FROM sujet WHERE id_theme = '".$id."'");
 
 				$tableSujet = array();

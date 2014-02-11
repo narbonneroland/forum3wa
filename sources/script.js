@@ -173,8 +173,18 @@ function getSujetList()
 function getMessageList()
 {
 	var id = $(this).find("a").attr("sujet");
+	//alert(id);
 	var cat = "message";
 	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
+		$(".liste").html(resultat);
+	});
+}
+
+function getMessage(id)
+{
+	var cat = "message";
+	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
+		//alert(resultat);
 		$(".liste").html(resultat);
 	});
 }
@@ -203,7 +213,7 @@ function formSujetAdd(id_theme)
 	$("#formSujetAdd").submit(function(e) {
 	e.preventDefault();
 		var auteur=$("#connexion").find("p").attr("iduser");
-		alert(auteur);
+		//alert(auteur);
 		var obj = "sujetaddform";
 		var titre = $("#titre").val();
 		var description = $("#description").val();
@@ -221,8 +231,7 @@ function formSujetAdd(id_theme)
 						}
 		};
 		$.ajax(options).done(function(resultat) {
-			alert(resultat);
-			getThemeList();
+			getMessage(resultat);
 		});
 	});
 }
@@ -245,7 +254,7 @@ function formSujetModif()
 						}
 		};
 		$.ajax(options).done(function(resultat) {
-			alert("fin");
+			//alert("fin");
 			getThemeList();
 		});
 	});

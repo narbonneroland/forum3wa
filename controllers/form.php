@@ -10,6 +10,10 @@
 			$data = array();
 			$sujet = $manager->CreateSujet($_POST);
 			$save = $sujet->Save();
+			$id_sujet=$save->getID();
+			$id_message=$save->getIdMessage();
+			echo $id_message;
+
 		}
 
 		else if ($_GET["objet"] == "sujetmodifform")

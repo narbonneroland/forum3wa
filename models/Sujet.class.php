@@ -15,6 +15,7 @@ Class Sujet
 	private $nomauteur;	// id de l'user qui l'a créé
 	private $id_sujet;	// id du sujet parent
 	private $id_theme; //id du theme parent
+	private $id_message; //id du message
 
 	public function __construct($db, $data)
 	{
@@ -119,6 +120,10 @@ Class Sujet
 	{
 		return $this->nomauteur;
 	}
+	public function getIdMessage()
+	{
+		return $this->id_message;
+	}
 	public function setNbreReponse($id_sujet)
 	{
 		$requete="SELECT * FROM message where message.id_sujet='".$this->id."'";
@@ -148,24 +153,27 @@ Class Sujet
 		$auteur = $this->auteur;
 		$id_theme = $this->id_theme;
 		$content =$this->content;
-		//var_dump($this->id);
+		
 		$requete="INSERT INTO sujet (titre, description, nbrview, statut, datecreation, id_auteur, id_theme) 
 				VALUES ('".$titre."','".$description."','".$nbrview."','".$statut."','".$datecreation."',".$auteur.",".$id_theme.")";
-			//var_dump($requete);
+			
 
 		if ($this->id == NULL)
 		{
-			//echo "1";
+			
 			$resultat = mysqli_query($this->db, "INSERT INTO sujet (id_sujet,titre, description, nbrview, statut, datecreation, id_auteur, id_theme) 
 				VALUES (NULL,'".$titre."','".$description."','".$nbrview."','".$statut."','".$datecreation."','".$auteur."','".$id_theme."')");
 			$this->id=mysqli_insert_id($this->db);
 			$requete="INSERT INTO message (content,id_auteur,id_sujet,id_theme)
 			         VALUES ('".$content."','".$auteur."','".$this->id."','".$id_theme."')";
 			$resultat = mysqli_query($this->db,$requete);
+			$this->id_message=mysqli_insert_id($this->db);
+			
+			return $this;
     	}
     	else
     	{
-    		//echo "2";
+    		
     		$resultat = mysqli_query($this->db, "UPDATE sujet SET titre = '".$titre."', description = '".$description."', nbrview = '".$nbrview."', statut = '".$statut."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_parent = '".$id_theme."' WHERE id_sujet = '".$id."'");
     	}
 	}

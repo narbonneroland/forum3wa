@@ -69,7 +69,7 @@ if ($db != false)
 		$test = true;
 		$sujet = $manager->getSujet($id,$test);
 		$titre = $sujet->getTitre();
-		
+
 		require 'views/contentHeadMessage.html';
 		$i = 0;
 		while(isset($message[$i]))
