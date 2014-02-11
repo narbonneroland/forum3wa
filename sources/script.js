@@ -13,10 +13,6 @@ function init_btns_login ()
 	init_btn_subscribe();
 	init_btn_subscribe_valid();
 	init_btn_reload_login_form();
-<<<<<<< HEAD
-=======
-	//init_btn_message();
->>>>>>> dc1fffb8af4bc07a63ee7d773cfa14abde65a4ef
 }
 
 function init_form_login ()
@@ -26,9 +22,9 @@ function init_form_login ()
 		var login=$('#login').val();
 		var password=$('#password').val();
 
-		if (login.match(/[\[\]\(\)<\$>;,.@& ]/) || password.match(/[\[\]\(\)<\$>;& ]/))
+		if (login.match(/[\[\]\(\)<\$>;,.\'\"@& ]/) || password.match(/[\[\]\(\)<\$>;\'\"& ]/))
 		{
-			alert ('Des caractères invalides ont été saisis');
+			alert ('Utilisation de caractères non autorisés');
 		}
 		else
 		{
@@ -71,9 +67,9 @@ function init_btn_subscribe_valid ()
 		var password=$('#new-password').val();
 		var validPassword=$('#confirm-password').val();
 
-		if (login.match(/[\[\]\(\)<\$>;,.@& ]/) || password.match(/[\[\]\(\)<\$>;& ]/) || validPassword.match(/[\[\]\(\)<\$>;& ]/))
+		if (login.match(/[\[\]\(\)<\$>;,.\'\"@& ]/) || password.match(/[\[\]\(\)<\$>;\'\"& ]/) || validPassword.match(/[\[\]\(\)<\$>;\'\"& ]/))
 		{
-			alert ('Des caractères invalides ont été saisis');
+			alert ('Utilisation de caractères non autorisés');
 		}
 		else
 		{
@@ -288,17 +284,3 @@ function formSujetModif()
 		});
 	});
 }
-
-/*
-function init_btn_message(id)
-{
-	if ($("#connexion").find("p").attr("iduser") == undefined)
-		alert ("Vous devez être connecté pour pouvoir répondre un sujet existant");
-	else
-		{
-		$("#btn-repondre").click(function()
-		{
-
-		})
-	}
-}*/
