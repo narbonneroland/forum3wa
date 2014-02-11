@@ -106,6 +106,7 @@ function init_btn_logoff ()
 		});
 	});
 }
+
 function init_btn_accueil ()
 {
 	$('#btn-accueil').off('click').click(function(e)
