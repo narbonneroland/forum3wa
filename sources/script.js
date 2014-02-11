@@ -13,7 +13,6 @@ function init_btns_login ()
 	init_btn_subscribe();
 	init_btn_subscribe_valid();
 	init_btn_reload_login_form();
-	init_btn_message();
 }
 
 function init_form_login ()
@@ -22,18 +21,26 @@ function init_form_login ()
 	{		
 		var login=$('#login').val();
 		var password=$('#password').val();
-		e.preventDefault();	
-		var options={
-			"url":"index.php?page=login",
-			"method":"POST",
-			"data":{"login":login,"password":password}
-		};
 
-		$.ajax(options).done(function(res)
+		if (login.match(/[\[\]\(\)<\$>;,.@& ]/) || password.match(/[\[\]\(\)<\$>;& ]/))
 		{
-			$("#connexion").html(res);
-			init_btns_login ();
-		});
+			alert ('Des caractères invalides ont été saisis');
+		}
+		else
+		{
+			e.preventDefault();	
+			var options={
+				"url":"index.php?page=login",
+				"method":"POST",
+				"data":{"login":login,"password":password}
+			};
+
+			$.ajax(options).done(function(res)
+			{
+				$("#connexion").html(res);
+				init_btns_login ();
+			});
+		}
 	});
 }
 
@@ -59,37 +66,45 @@ function init_btn_subscribe_valid ()
 		var login=$('#new-login').val();
 		var password=$('#new-password').val();
 		var validPassword=$('#confirm-password').val();
-		e.preventDefault();
 
-		if (login.trim() == '' || password.trim() == '' || validPassword.trim() == '')
+		if (login.match(/[\[\]\(\)<\$>;,.@& ]/) || password.match(/[\[\]\(\)<\$>;& ]/) || validPassword.match(/[\[\]\(\)<\$>;& ]/))
 		{
-			alert ("Tous les champs doivent être renseignés.");
-		}
-		else if (password != validPassword)
-		{
-			alert ("Les mots de passe ne sont pas identiques.");
+			alert ('Des caractères invalides ont été saisis');
 		}
 		else
 		{
-			var options={
-				"url":"index.php?page=record",
-				"method":"POST",
-				"data":{"login":login,
-						"password":password,
-						"validation":validPassword}
-			};
+			e.preventDefault();
 
-			$.ajax(options).done(function(res)
+			if (login.trim() == '' || password.trim() == '' || validPassword.trim() == '')
 			{
-				if (res == "ERR-INVALID-POST")
-					alert ("Tous les champs doivent être renseignés.");
-				else if (res == "ERR-INVALID-PASSWORD")
-					alert ("Les mots de passe ne sont pas identiques.");
-				else if (res == "ERR-USER-ALREADY-EXISTS")
-					alert ("Login déjà utilisé.");
-				else $("#connexion").html(res);
-				init_btns_login ();
-			});
+				alert ("Tous les champs doivent être renseignés.");
+			}
+			else if (password != validPassword)
+			{
+				alert ("Les mots de passe ne sont pas identiques.");
+			}
+			else
+			{
+				var options={
+					"url":"index.php?page=record",
+					"method":"POST",
+					"data":{"login":login,
+							"password":password,
+							"validation":validPassword}
+				};
+
+				$.ajax(options).done(function(res)
+				{
+					if (res == "ERR-INVALID-POST")
+						alert ("Tous les champs doivent être renseignés.");
+					else if (res == "ERR-INVALID-PASSWORD")
+						alert ("Les mots de passe ne sont pas identiques.");
+					else if (res == "ERR-USER-ALREADY-EXISTS")
+						alert ("Login déjà utilisé.");
+					else $("#connexion").html(res);
+					init_btns_login ();
+				});
+			}
 		}
 	});
 }
