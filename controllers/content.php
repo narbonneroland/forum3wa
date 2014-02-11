@@ -38,7 +38,8 @@ if ($db != false)
 
 		// on récupère le thème car on a besoin du titre
 		$theme = $manager->getTheme($id);
-		$titre = $theme->getTitre();
+		$path_theme = $theme->getTitre();
+		$id_theme = $theme->getID();
 		
 		require 'views/contentHeadSujet.html';
 		$i = 0;
@@ -64,11 +65,18 @@ if ($db != false)
 	{
 		$id = $_GET["id_sujet"];
 		$message = $manager->getMessage($id);
+		//$path_sujet = $sujet->getPathSujet();/*$path_theme.' > '.*/
 
 		// on récupère le sujet car on a besoin du titre
 		$test = true;
 		$sujet = $manager->getSujet($id,$test);
-		$titre = $sujet->getTitre();
+		// le titre du sujet
+		$path_sujet = $sujet->getTitre();
+		// le titre du theme
+		$path_theme = $sujet->getPath();
+		// les id nécessaires au clic
+		$id_sujet = $sujet->getID();
+		$id_theme = $sujet->getIdTheme();
 
 		require 'views/contentHeadMessage.html';
 		$i = 0;

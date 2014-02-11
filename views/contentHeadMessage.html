@@ -1,8 +1,13 @@
 <section class="message clearfix">
 	 <button type="submit" id="btn-repondre">Répondre</button>
 	 <div class="headmessage clearfix">
-		 <div class="messagetitle"><?php echo 'Theme > '.'Sujet > '.$titre; ?></div>
-		 <div class="navmessage"> 
+		 <div class="messagetitle">
+		 	<span class="pathindex">Index</span> > 
+		 				<span class="paththeme"><a theme="<?php echo $id_theme; ?>">
+		 				<?php echo $path_theme; ?></a></span> > 
+		 				<span class="pathsujet"><a sujet="<?php echo $id_sujet; ?>"></a>
+		 				<strong><?php echo $path_sujet; ?></strong></span></div>
+		 <div class="navmessage">
 				 <!--<span><a href="#">Page 1 sur 3</a></span> - 
 				 <a href="page.1.html">1</a>
 				 <a href="page.2.html">2</a>

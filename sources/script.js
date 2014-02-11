@@ -155,6 +155,7 @@ function getThemeList()
 	$.ajax("index.php?page=content&cat="+cat).done(function(resultat) {
 		$(".liste").html(resultat);
 		$(".descriptionTheme").click(getSujetList);
+		$(".pathindex").click(getThemeList);
 	});
 }
 
@@ -167,7 +168,8 @@ function getSujetList()
 		$(".descriptionSujet").click(getMessageList);
 		$("#btn-newsujet").click(showFormSujet);
 		$("#btn-editsujet").click(showFormSujet);
-		
+		$(".pathindex").click(getThemeList);
+		$(".paththeme").click(getSujetList);
 	});
 }
 
@@ -178,6 +180,9 @@ function getMessageList()
 	var cat = "message";
 	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
 		$(".liste").html(resultat);
+		$(".pathindex").click(getThemeList);
+		$(".paththeme").click(getSujetList);
+		$(".pathsujet").click(getMessageList);
 		init_btn_message(id);
 	});
 }

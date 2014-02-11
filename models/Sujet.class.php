@@ -4,8 +4,8 @@ Class Sujet
 {
 	private $db;
 	private $id;		// id dans la DB
-	private $titre;		// titredu sujet
-	private $description;	// description falcultativeen desous du titre
+	private $titre;		// titre du sujet
+	private $description;	// description falcultative en desous du titre
 	private $content; //message initiale
 	private $nbrrep;
 	private $nbrview;	// nombre de vues
@@ -14,7 +14,7 @@ Class Sujet
 	private $auteur;
 	private $nomauteur;	// id de l'user qui l'a créé
 	private $id_sujet;	// id du sujet parent
-	private $id_theme; //id du theme parent
+	private $id_theme;  //id du theme parent
 	private $id_message; //id du message
 
 	public function __construct($db, $data)
@@ -199,6 +199,14 @@ Class Sujet
 			$this->datecreation="";
 		}
 
+	}
+	public function getPath()
+	{
+		$db = $this->db;
+		$id_theme = $this->id_theme;
+		$resultat = mysqli_query($db, 'SELECT titre FROM theme WHERE theme.id_theme ='.$id_theme);
+		$data = mysqli_fetch_assoc($resultat);
+		return($data["titre"]);
 	}
 }
 ?>

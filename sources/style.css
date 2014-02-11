@@ -224,3 +224,6 @@ header img{
 {
 	display:block;
 }
+#content .pathindex, #content .paththeme, #content .pathsujet{
+	color: navy;
+}
