@@ -13,6 +13,7 @@ function init_btns_login ()
 	init_btn_subscribe();
 	init_btn_subscribe_valid();
 	init_btn_reload_login_form();
+	init_btn_message();
 }
 
 function init_form_login ()
@@ -177,6 +178,7 @@ function getMessageList()
 	var cat = "message";
 	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
 		$(".liste").html(resultat);
+		init_btn_message(id);
 	});
 }
 
@@ -186,6 +188,7 @@ function getMessage(id)
 	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
 		//alert(resultat);
 		$(".liste").html(resultat);
+		init_btn_message(id);
 	});
 }
 
@@ -219,6 +222,7 @@ function formSujetAdd(id_theme)
 		var description = $("#description").val();
 		var content = $('#sujet_content').val();
 
+<<<<<<< HEAD
 		if (titre.trim() == '' || description.trim() == '' || content.trim() == '')
 		{
 			alert ("Tous les champs doivent être renseignés.");
@@ -240,6 +244,23 @@ function formSujetAdd(id_theme)
 				getMessage(resultat);
 			});
 		}
+=======
+		var options = { "url" : "index.php?page=form&objet="+obj,
+						"method" : "POST",
+						"data" : {
+							//"objet" : obj,
+							"id_theme":id_theme,
+							"titre" : titre,
+							"description" : description,
+							"id_auteur" : auteur,
+							"content" : content
+						}
+		};
+		$.ajax(options).done(function(resultat) {
+			getMessage(resultat);
+
+		});
+>>>>>>> 7858884530f12de699fdba01c74f0ba5416c28a0
 	});
 }
 
@@ -265,4 +286,17 @@ function formSujetModif()
 			getThemeList();
 		});
 	});
+}
+
+function init_btn_message(id)
+{
+	if ($("#connexion").find("p").attr("iduser") == undefined)
+		alert ("Vous devez être connecté pour pouvoir répondre un sujet existant");
+	else
+		{
+		$("#btn-repondre").click(function()
+		{
+
+		})
+	}
 }

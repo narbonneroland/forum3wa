@@ -12,7 +12,7 @@
 			$save = $sujet->Save();
 			$id_sujet=$save->getID();
 			$id_message=$save->getIdMessage();
-			echo $id_message;
+			echo $id_sujet;
 
 		}
 
