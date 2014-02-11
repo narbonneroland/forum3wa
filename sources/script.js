@@ -13,6 +13,10 @@ function init_btns_login ()
 	init_btn_subscribe();
 	init_btn_subscribe_valid();
 	init_btn_reload_login_form();
+<<<<<<< HEAD
+=======
+	//init_btn_message();
+>>>>>>> dc1fffb8af4bc07a63ee7d773cfa14abde65a4ef
 }
 
 function init_form_login ()
@@ -193,7 +197,7 @@ function getMessageList()
 	var cat = "message";
 	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
 		$(".liste").html(resultat);
-		init_btn_message(id);
+		//init_btn_message(id);
 	});
 }
 
@@ -203,7 +207,7 @@ function getMessage(id)
 	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
 		//alert(resultat);
 		$(".liste").html(resultat);
-		init_btn_message(id);
+		//init_btn_message(id);
 	});
 }
 
