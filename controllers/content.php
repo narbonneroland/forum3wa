@@ -22,6 +22,7 @@ if ($db != false)
 			$theme[$i]->setDernierMessage($id);
 			$auteur=$theme[$i]->getNomAuteur();
 			$date=$theme[$i]->getDatecreation();
+			$titre_sujet=$theme[$i]->getTitreSujet();
 			require 'views/contentTheme.html';
 		$i++;
 		}
