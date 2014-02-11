@@ -96,13 +96,10 @@ function init_btn_subscribe_valid ()
 function init_btn_logoff ()
 {
 	$('#btn-deconnexion').off('click').click(function(e)
-	{		
-		var options={"url":"index.php?page=logoff"};
-
-		$.ajax(options).done(function(res)
+	{
+		$.ajax("index.php?page=logoff").done(function(res)
 		{
-			$("#connexion").html(res);
-			init_btns_login ();
+			window.location.reload();
 		});
 	});
 }
@@ -159,6 +156,7 @@ function getThemeList()
 		$(".descriptionTheme").click(getSujetList);
 	});
 }
+
 function getSujetList()
 {
 	var id = $(this).find("a").attr("theme");
@@ -171,6 +169,7 @@ function getSujetList()
 		
 	});
 }
+
 function getMessageList()
 {
 	var id = $(this).find("a").attr("sujet");
@@ -227,6 +226,7 @@ function formSujetAdd(id_theme)
 		});
 	});
 }
+
 function formSujetModif()
 {
 	$("#formSujetModif").submit(function(e) {
