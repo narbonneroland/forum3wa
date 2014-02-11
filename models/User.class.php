@@ -94,7 +94,11 @@ Class User
 	{
 		$this->setLogin($data['login']);
 		$this->setPassword($data['password']);
-		$requete="INSERT INTO user (login,password,statut,authorized) VALUES ('".$this->getLogin()."','".$this->getPassword()."','utilisateur','1')";
+
+		$login=mysqli_real_escape_string($this->db,$data['login']);
+		$password=mysqli_real_escape_string($this->db,$data['password']);
+
+		$requete="INSERT INTO user (login,password,statut,authorized) VALUES ('".$login."','".$password."','utilisateur','1')";
 		$res=mysqli_query($this->db,$requete);
 		$this->id = mysqli_insert_id($this->db);
 		return $this;

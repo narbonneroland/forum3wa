@@ -1,8 +1,8 @@
 <?php
 
-if (!isset($_POST['login']) || $_POST['login'] == '' ||
-	!isset($_POST['password']) || $_POST['password'] == '' ||
-	!isset($_POST['validation']) || $_POST['validation'] == '')
+if (!isset($_POST['login']) || trim($_POST['login']) == '' ||
+	!isset($_POST['password']) || trim($_POST['password']) == '' ||
+	!isset($_POST['validation']) || trim($_POST['validation']) == '')
 {
 	echo "ERR-INVALID-POST";
 }

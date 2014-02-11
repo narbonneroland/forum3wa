@@ -60,7 +60,7 @@ function init_btn_subscribe_valid ()
 		var validPassword=$('#confirm-password').val();
 		e.preventDefault();
 
-		if (login == '' || password == '' || validPassword == '')
+		if (login.trim() == '' || password.trim() == '' || validPassword.trim() == '')
 		{
 			alert ("Tous les champs doivent être renseignés.");
 		}
@@ -219,20 +219,27 @@ function formSujetAdd(id_theme)
 		var description = $("#description").val();
 		var content = $('#sujet_content').val();
 
-		var options = { "url" : "index.php?page=form&objet="+obj,
-						"method" : "POST",
-						"data" : {
-							//"objet" : obj,
-							"id_theme":id_theme,
-							"titre" : titre,
-							"description" : description,
-							"id_auteur" : auteur,
-							"content" : content
-						}
-		};
-		$.ajax(options).done(function(resultat) {
-			getMessage(resultat);
-		});
+		if (titre.trim() == '' || description.trim() == '' || content.trim() == '')
+		{
+			alert ("Tous les champs doivent être renseignés.");
+		}
+		else
+		{
+			var options = { "url" : "index.php?page=form&objet="+obj,
+							"method" : "POST",
+							"data" : {
+								//"objet" : obj,
+								"id_theme":id_theme,
+								"titre" : titre,
+								"description" : description,
+								"id_auteur" : auteur,
+								"content" : content
+							}
+			};
+			$.ajax(options).done(function(resultat) {
+				getMessage(resultat);
+			});
+		}
 	});
 }
 
