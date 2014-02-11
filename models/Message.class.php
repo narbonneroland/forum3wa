@@ -100,11 +100,11 @@ Class Message
 	public function save()
 	{
 		$id  = $this->id;
-		$content = $this->contenu;
-		$description = $this->description;
+		$content = mysqli_real_escape_string($db,$this->contenu);
+		$description = mysqli_real_escape_string($db,$this->description);
 		$datecreation = $this->datecreation;
 		$auteur = $this->auteur;
-		$sujet = $this->sujet;
+		$sujet = mysqli_real_escape_string($db,$this->sujet);
 		
 
 		if ($this->id == 'NULL')

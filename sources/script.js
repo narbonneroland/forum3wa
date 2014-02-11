@@ -13,7 +13,6 @@ function init_btns_login ()
 	init_btn_subscribe();
 	init_btn_subscribe_valid();
 	init_btn_reload_login_form();
-	init_btn_message();
 }
 
 function init_form_login ()
@@ -22,18 +21,26 @@ function init_form_login ()
 	{		
 		var login=$('#login').val();
 		var password=$('#password').val();
-		e.preventDefault();	
-		var options={
-			"url":"index.php?page=login",
-			"method":"POST",
-			"data":{"login":login,"password":password}
-		};
 
-		$.ajax(options).done(function(res)
+		if (login.match(/[\[\]\(\)<\$>;,.\'\"@& ]/) || password.match(/[\[\]\(\)<\$>;\'\"& ]/))
 		{
-			$("#connexion").html(res);
-			init_btns_login ();
-		});
+			alert ('Utilisation de caractères non autorisés');
+		}
+		else
+		{
+			e.preventDefault();	
+			var options={
+				"url":"index.php?page=login",
+				"method":"POST",
+				"data":{"login":login,"password":password}
+			};
+
+			$.ajax(options).done(function(res)
+			{
+				$("#connexion").html(res);
+				init_btns_login ();
+			});
+		}
 	});
 }
 
@@ -59,37 +66,45 @@ function init_btn_subscribe_valid ()
 		var login=$('#new-login').val();
 		var password=$('#new-password').val();
 		var validPassword=$('#confirm-password').val();
-		e.preventDefault();
 
-		if (login == '' || password == '' || validPassword == '')
+		if (login.match(/[\[\]\(\)<\$>;,.\'\"@& ]/) || password.match(/[\[\]\(\)<\$>;\'\"& ]/) || validPassword.match(/[\[\]\(\)<\$>;\'\"& ]/))
 		{
-			alert ("Tous les champs doivent être renseignés.");
-		}
-		else if (password != validPassword)
-		{
-			alert ("Les mots de passe ne sont pas identiques.");
+			alert ('Utilisation de caractères non autorisés');
 		}
 		else
 		{
-			var options={
-				"url":"index.php?page=record",
-				"method":"POST",
-				"data":{"login":login,
-						"password":password,
-						"validation":validPassword}
-			};
+			e.preventDefault();
 
-			$.ajax(options).done(function(res)
+			if (login.trim() == '' || password.trim() == '' || validPassword.trim() == '')
 			{
-				if (res == "ERR-INVALID-POST")
-					alert ("Tous les champs doivent être renseignés.");
-				else if (res == "ERR-INVALID-PASSWORD")
-					alert ("Les mots de passe ne sont pas identiques.");
-				else if (res == "ERR-USER-ALREADY-EXISTS")
-					alert ("Login déjà utilisé.");
-				else $("#connexion").html(res);
-				init_btns_login ();
-			});
+				alert ("Tous les champs doivent être renseignés.");
+			}
+			else if (password != validPassword)
+			{
+				alert ("Les mots de passe ne sont pas identiques.");
+			}
+			else
+			{
+				var options={
+					"url":"index.php?page=record",
+					"method":"POST",
+					"data":{"login":login,
+							"password":password,
+							"validation":validPassword}
+				};
+
+				$.ajax(options).done(function(res)
+				{
+					if (res == "ERR-INVALID-POST")
+						alert ("Tous les champs doivent être renseignés.");
+					else if (res == "ERR-INVALID-PASSWORD")
+						alert ("Les mots de passe ne sont pas identiques.");
+					else if (res == "ERR-USER-ALREADY-EXISTS")
+						alert ("Login déjà utilisé.");
+					else $("#connexion").html(res);
+					init_btns_login ();
+				});
+			}
 		}
 	});
 }
@@ -180,10 +195,14 @@ function getMessageList()
 	var cat = "message";
 	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
 		$(".liste").html(resultat);
+<<<<<<< HEAD
 		$(".pathindex").click(getThemeList);
 		$(".paththeme").click(getSujetList);
 		$(".pathsujet").click(getMessageList);
 		init_btn_message(id);
+=======
+		//init_btn_message(id);
+>>>>>>> f23fe447f515287564a41846dfd3dedec7271221
 	});
 }
 
@@ -193,7 +212,7 @@ function getMessage(id)
 	$.ajax("index.php?page=content&id_sujet="+id+"&cat="+cat).done(function(resultat) {
 		//alert(resultat);
 		$(".liste").html(resultat);
-		init_btn_message(id);
+		//init_btn_message(id);
 	});
 }
 
@@ -227,21 +246,27 @@ function formSujetAdd(id_theme)
 		var description = $("#description").val();
 		var content = $('#sujet_content').val();
 
-		var options = { "url" : "index.php?page=form&objet="+obj,
-						"method" : "POST",
-						"data" : {
-							//"objet" : obj,
-							"id_theme":id_theme,
-							"titre" : titre,
-							"description" : description,
-							"id_auteur" : auteur,
-							"content" : content
-						}
-		};
-		$.ajax(options).done(function(resultat) {
-			getMessage(resultat);
-
-		});
+		if (titre.trim() == '' || description.trim() == '' || content.trim() == '')
+		{
+			alert ("Tous les champs doivent être renseignés.");
+		}
+		else
+		{
+			var options = { "url" : "index.php?page=form&objet="+obj,
+							"method" : "POST",
+							"data" : {
+								//"objet" : obj,
+								"id_theme":id_theme,
+								"titre" : titre,
+								"description" : description,
+								"id_auteur" : auteur,
+								"content" : content
+							}
+			};
+			$.ajax(options).done(function(resultat) {
+				getMessage(resultat);
+			});
+		}
 	});
 }
 
@@ -267,17 +292,4 @@ function formSujetModif()
 			getThemeList();
 		});
 	});
-}
-
-function init_btn_message(id)
-{
-	if ($("#connexion").find("p").attr("iduser") == undefined)
-		alert ("Vous devez être connecté pour pouvoir répondre un sujet existant");
-	else
-		{
-		$("#btn-repondre").click(function()
-		{
-
-		})
-	}
 }
