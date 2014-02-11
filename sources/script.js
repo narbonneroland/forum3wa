@@ -222,7 +222,6 @@ function formSujetAdd(id_theme)
 		var description = $("#description").val();
 		var content = $('#sujet_content').val();
 
-<<<<<<< HEAD
 		if (titre.trim() == '' || description.trim() == '' || content.trim() == '')
 		{
 			alert ("Tous les champs doivent être renseignés.");
@@ -244,23 +243,6 @@ function formSujetAdd(id_theme)
 				getMessage(resultat);
 			});
 		}
-=======
-		var options = { "url" : "index.php?page=form&objet="+obj,
-						"method" : "POST",
-						"data" : {
-							//"objet" : obj,
-							"id_theme":id_theme,
-							"titre" : titre,
-							"description" : description,
-							"id_auteur" : auteur,
-							"content" : content
-						}
-		};
-		$.ajax(options).done(function(resultat) {
-			getMessage(resultat);
-
-		});
->>>>>>> 7858884530f12de699fdba01c74f0ba5416c28a0
 	});
 }
 
@@ -288,6 +270,7 @@ function formSujetModif()
 	});
 }
 
+/*
 function init_btn_message(id)
 {
 	if ($("#connexion").find("p").attr("iduser") == undefined)
@@ -299,4 +282,4 @@ function init_btn_message(id)
 
 		})
 	}
-}
+}*/
