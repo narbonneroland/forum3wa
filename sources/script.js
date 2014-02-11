@@ -184,31 +184,37 @@ function getMessageList()
 function showFormSujet(){
 
 	var obj = "showform";
+	var id_theme=$("#btn-newsujet").attr("theme");
+	
 	$.ajax("index.php?page=form&objet="+obj).done(function(resultat) {
 		$(".liste").html(resultat);
-		$("#btn-valid-formAdd").click(formSujetAdd);
+		$("#btn-valid-formAdd").click(formSujetAdd(id_theme));
 		$("#btn-valid-formModif").click(formSujetModif);
 	});
 }
-function formSujetAdd()
+function formSujetAdd(id_theme)
 {
+
 	$("#formSujetAdd").submit(function(e) {
 	e.preventDefault();
-
+		var auteur=$("#connexion").find("p").attr("iduser");
+		alert(auteur);
 		var obj = "sujetaddform";
 		var titre = $("#titre").val();
 		var description = $("#description").val();
 
-		var options = { "url" : "index.php?page=form",
+		var options = { "url" : "index.php?page=form&objet="+obj,
 						"method" : "POST",
 						"data" : {
-							"objet" : obj,
+							//"objet" : obj,
+							"id_theme":id_theme,
 							"titre" : titre,
-							"description" : description
+							"description" : description,
+							"id_auteur" : auteur
 						}
 		};
 		$.ajax(options).done(function(resultat) {
-			alert("fin");
+			alert(resultat);
 			getThemeList();
 		});
 	});
@@ -222,10 +228,10 @@ function formSujetModif()
 		var titre = $("#titre").val();
 		var description = $("#description").val();
 
-		var options = { "url" : "index.php?page=form",
+		var options = { "url" : "index.php?page=form&objet="+obj,
 						"method" : "POST",
 						"data" : {
-							"objet" : obj,
+							//"objet" : obj,
 							"titre" : titre,
 							"description" : description
 						}

@@ -13,6 +13,7 @@ if(!isset($_SESSION['created']))
 function init_session()
 {
 	$_SESSION['login']="";
+	$_SESSION['id_user']="";
 	$_SESSION['created']=true;
 }
 
@@ -27,6 +28,7 @@ $content = 'controllers/content.php';
 
 if (isset($_GET['page']))
 {	
+
 	$content = 'controllers/'.$_GET['page'].'.php';
 }
 

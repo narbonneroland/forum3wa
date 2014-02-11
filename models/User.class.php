@@ -81,9 +81,12 @@ Class User
 		
 		$resultat = mysqli_query($db, "SELECT * FROM user WHERE login='".$login."' AND password='".$password."'");		
 		$nbr = mysqli_num_rows($resultat);
-		//$data = mysqli_fetch_assoc($resultat);
+		$data = mysqli_fetch_assoc($resultat);
 
-		if($nbr == 1) return true;
+		if($nbr == 1) 
+			{ $this->id=$data['id_user'];
+			  $this->login=$data['login'];
+				return $this;}
 		else return false;
 	}
 

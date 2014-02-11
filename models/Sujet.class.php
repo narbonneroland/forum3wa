@@ -20,15 +20,24 @@ Class Sujet
 		$this->db = $db;
 		if ($data != 'NULL')
 		{
-			$this->id = $data['id_sujet'];
-			$this->titre = $data['titre'];
-			$this->description = $data['description'];
-			$this->nbrview = $data['nbrview'];
-			$this->statut = $data['statut'];
-			$this->datecreation = $data['datecreation'];
-			$this->auteur = $data['id_auteur'];
-			$this->id_sujet=$data['id_sujet'];
-			$this->id_theme = $data['id_theme'];
+			if(isset($data['id_sujet']))
+				$this->id = $data['id_sujet'];
+			if(isset($data['titre']))
+				$this->titre = $data['titre'];
+			if(isset($data['description']))
+				$this->description = $data['description'];
+			if(isset($data['nbrview']))
+				$this->nbrview = $data['nbrview'];
+			if(isset($data['statut']))
+				$this->statut = $data['statut'];
+			if(isset($data['datecreation']))
+				$this->datecreation = $data['datecreation'];
+			if(isset($data['id_auteur']))
+				$this->auteur = $data['id_auteur'];
+			//if(isset($data['id_sujet']))
+				//$this->id_sujet=$data['id_sujet'];
+			if(isset($data['id_theme']))
+				$this->id_theme = $data['id_theme'];
 		}
 	}
 	public function setID($id)
@@ -109,7 +118,7 @@ Class Sujet
 	}
 	public function setNbreReponse($id_sujet)
 	{
-		$requete="SELECT * FROM message where message.id_sujet='".$id_sujet."'";
+		$requete="SELECT * FROM message where message.id_sujet='".$this->id."'";
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
 		if($nbr==0)
@@ -123,6 +132,10 @@ Class Sujet
 	public function getNbrRep()
 	{
 		return $this->nbrrep;
+	}
+
+	public function save()
+	{
 		$id  = $this->id;
 		$titre = $this->titre;
 		$description = $this->description;
@@ -130,21 +143,27 @@ Class Sujet
 		$statut = $this->statut;
 		$datecreation = $this->datecreation;
 		$auteur = $this->auteur;
-		$parent = $this->parent;
+		$id_theme = $this->id_theme;
+		var_dump($this->id);
+		$requete="INSERT INTO sujet (titre, description, nbrview, statut, datecreation, id_auteur, id_theme) 
+				VALUES ('".$titre."','".$description."','".$nbrview."','".$statut."','".$datecreation."',".$auteur.",".$id_theme.")";
+			var_dump($requete);
 
-		if ($this->id == 'NULL')
+		if ($this->id == NULL)
 		{
-			$resultat = mysqli_query($db, "INSERT INTO sujet (titre, description, nbrview, statut, datecreation, id_auteur, id_parent) 
-				VALUES ('".$titre."','".$description."','".$nbrview."','".$statut."','".$datecreation."','".$auteur."','".$parent."')");
+			echo "1";
+			$resultat = mysqli_query($this->db, "INSERT INTO sujet (id_sujet,titre, description, nbrview, statut, datecreation, id_auteur, id_theme) 
+				VALUES (NULL,'".$titre."','".$description."','".$nbrview."','".$statut."','".$datecreation."','".$auteur."','".$id_theme."')");
     	}
     	else
     	{
-    		$resultat = mysqli_query($db, "UPDATE sujet SET titre = '".$titre."', description = '".$description."', nbrview = '".$nbrview."', statut = '".$statut."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_parent = '".$parent."' WHERE id_sujet = '".$id."'");
+    		echo "2";
+    		$resultat = mysqli_query($this->db, "UPDATE sujet SET titre = '".$titre."', description = '".$description."', nbrview = '".$nbrview."', statut = '".$statut."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_parent = '".$id_theme."' WHERE id_sujet = '".$id."'");
     	}
 	}
-	public function setDernierMessage($id_sujet)
+	public function setDernierMessage($id)
 	{
-		$requete="SELECT id_auteur,datecreation FROM message Where id_sujet=".$id_sujet." ORDER BY datecreation DESC limit 0,1";
+		$requete="SELECT id_auteur,datecreation FROM message Where id_sujet=".$id." ORDER BY datecreation DESC limit 0,1";
 		$db = $this->db ;
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
