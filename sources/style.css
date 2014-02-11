@@ -219,3 +219,8 @@ header img{
 	padding: 10px 50px 10px 50px;
 	margin: 10px 0px 0px 30px;
 }
+
+#content .saisie
+{
+	display:block;
+}

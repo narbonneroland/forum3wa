@@ -88,6 +88,9 @@ if ($db != false)
 			require 'views/contentMessage.html';
 		$i++;
 		}
+		$pluriel="";
+		if($i>1)
+			$pluriel="s";
 		require 'views/contentFootMessage.html';
 	}
 }
