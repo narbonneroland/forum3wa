@@ -10,25 +10,27 @@ a{
 }
 
 	header{
+		margin-top: 3%;
 		width: 100%;
 	}
+	header img{
+		float: left;
+	}
 
+	#navigation{
+		float: right;
+		width: 50%;
+	}
+
+	#connexion{
+		display: inline-block;
+		width: 30%;
+		margin-right: 4%;
+	}
 
 	#content{
-		
-		
-	}
-		#navigation{
-			display: block;
-			width: 100%;
-			text-align: right;
-		}
-		#connexion{
-			display: inline-block;
-			width: 30%;
-			margin-right: 4%;
-		}
 
+	}
 
 	footer{
 		text-align: center;
@@ -44,7 +46,9 @@ header img{
 }
 #navigation ul{
 	display: inline-block;
-	width: 60%;
+	width: 45%;
+	margin-left: -14%;
+	margin-right: 5%;
 	vertical-align: top;
 }
 #navigation li{
