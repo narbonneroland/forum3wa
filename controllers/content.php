@@ -74,9 +74,11 @@ if ($db != false)
 		$i = 0;
 		while(isset($message[$i]))
 		{
+
 			$id_user =$message[$i]->getAuteur();
-		
 			$message[$i]->setUser($id_user);
+			$message[$i]->setNbreMessage($id_user);
+			$nbrMessage=$message[$i]->getNbreMessage();
 			$user = $message[$i]->getNomAuteur();
 		
 			$statut = $message[$i]->getStatut();

@@ -11,6 +11,7 @@ Class Message
 	private $statut; //Administateur,utilisateur,autre
 	private $sujet;	// id du sujet parent
 	private $theme; //id du theme parent
+	private $nbremessage; //nbre message par id
 
 	public function __construct($db, $data)
 	{
@@ -76,6 +77,17 @@ Class Message
 	public function getStatut()
 	{
 		return $this->statut;
+	}
+	public function setNbreMessage($id_user)
+	{
+		$requete="SELECT * FROM message WHERE id_auteur=".$id_user;
+		$res=mysqli_query($this->db,$requete);
+		$nbr=mysqli_num_rows($res);
+		$this->nbremessage=$nbr;
+	}
+	public function getNbreMessage()
+	{
+		return $this->nbremessage;
 	}
 	public function setUser($id_auteur)
 	{
