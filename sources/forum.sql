@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 10 Février 2014 à 12:28
--- Version du serveur: 5.5.34-0ubuntu0.13.04.1
+-- Généré le: Mar 11 Février 2014 à 10:58
+-- Version du serveur: 5.5.32-0ubuntu0.13.04.1
 -- Version de PHP: 5.4.9-4ubuntu2.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -112,19 +112,22 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `statut` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `authorized` tinyint(1) NOT NULL,
+  `statut` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT 'utilisateur',
+  `authorized` tinyint(1) NOT NULL DEFAULT '1',
   `datecreation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_user`),
-  UNIQUE KEY `id_user` (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Liste des utilisateurs' AUTO_INCREMENT=2 ;
+  UNIQUE KEY `id_user` (`id_user`),
+  UNIQUE KEY `login` (`login`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Liste des utilisateurs' AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`id_user`, `login`, `password`, `statut`, `authorized`, `datecreation`) VALUES
-(1, 'nico', 'admin', 'administrateur', 1, '2014-02-10 04:16:23');
+(1, 'nico', 'admin', 'administrateur', 1, '2014-02-10 04:16:23'),
+(3, 'dlg', 'toto', 'administrateur', 1, '2014-02-10 15:47:48'),
+(4, 'toto', 'titi', 'administrateur', 1, '2014-02-10 16:09:46');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
