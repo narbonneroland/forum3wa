@@ -129,7 +129,7 @@ Class Theme
 		if ($db != false)
 		{
 			$id  = $this->id;
-			$titre = $this->titre;
+			$titre = mysqli_real_escape_string($db,$this->titre);
 			$nbrsujet = $this->nbrsujet;
 			$nbrmsg = $this->nbrmsg;
 			$datecreation = $this->datecreation;

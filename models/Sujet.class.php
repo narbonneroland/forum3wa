@@ -145,14 +145,14 @@ Class Sujet
 	public function save()
 	{
 		$id  = $this->id;
-		$titre = $this->titre;
-		$description = $this->description;
+		$titre = mysqli_real_escape_string($this->db,$this->titre);
+		$description = mysqli_real_escape_string($this->db,$this->description);
 		$nbrview = $this->nbrview;
 		$statut = $this->statut;
 		$datecreation = $this->datecreation;
 		$auteur = $this->auteur;
 		$id_theme = $this->id_theme;
-		$content =$this->content;
+		$content =mysqli_real_escape_string($this->db,$this->content);
 		
 		$requete="INSERT INTO sujet (titre, description, nbrview, statut, datecreation, id_auteur, id_theme) 
 				VALUES ('".$titre."','".$description."','".$nbrview."','".$statut."','".$datecreation."',".$auteur.",".$id_theme.")";
