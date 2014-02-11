@@ -6,6 +6,7 @@ Class Sujet
 	private $id;		// id dans la DB
 	private $titre;		// titredu sujet
 	private $description;	// description falcultativeen desous du titre
+	private $content; //message initiale
 	private $nbrrep;
 	private $nbrview;	// nombre de vues
 	private $statut;	// nouveau ou lu
@@ -34,6 +35,8 @@ Class Sujet
 				$this->datecreation = $data['datecreation'];
 			if(isset($data['id_auteur']))
 				$this->auteur = $data['id_auteur'];
+			if(isset($data['content']))
+				$this->content=$data['content'];
 			//if(isset($data['id_sujet']))
 				//$this->id_sujet=$data['id_sujet'];
 			if(isset($data['id_theme']))
@@ -144,20 +147,25 @@ Class Sujet
 		$datecreation = $this->datecreation;
 		$auteur = $this->auteur;
 		$id_theme = $this->id_theme;
-		var_dump($this->id);
+		$content =$this->content;
+		//var_dump($this->id);
 		$requete="INSERT INTO sujet (titre, description, nbrview, statut, datecreation, id_auteur, id_theme) 
 				VALUES ('".$titre."','".$description."','".$nbrview."','".$statut."','".$datecreation."',".$auteur.",".$id_theme.")";
-			var_dump($requete);
+			//var_dump($requete);
 
 		if ($this->id == NULL)
 		{
-			echo "1";
+			//echo "1";
 			$resultat = mysqli_query($this->db, "INSERT INTO sujet (id_sujet,titre, description, nbrview, statut, datecreation, id_auteur, id_theme) 
 				VALUES (NULL,'".$titre."','".$description."','".$nbrview."','".$statut."','".$datecreation."','".$auteur."','".$id_theme."')");
+			$this->id=mysqli_insert_id($this->db);
+			$requete="INSERT INTO message (content,id_auteur,id_sujet,id_theme)
+			         VALUES ('".$content."','".$auteur."','".$this->id."','".$id_theme."')";
+			$resultat = mysqli_query($this->db,$requete);
     	}
     	else
     	{
-    		echo "2";
+    		//echo "2";
     		$resultat = mysqli_query($this->db, "UPDATE sujet SET titre = '".$titre."', description = '".$description."', nbrview = '".$nbrview."', statut = '".$statut."', datecreation = '".$datecreation."', id_auteur = '".$auteur."', id_parent = '".$id_theme."' WHERE id_sujet = '".$id."'");
     	}
 	}
@@ -176,6 +184,7 @@ Class Sujet
 			$res=mysqli_query($this->db,$requete);
 			$record=mysqli_fetch_assoc($res);
 			$this->nomauteur=$record['login'];
+			
 		}
 		else
 		{

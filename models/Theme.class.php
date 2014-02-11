@@ -10,7 +10,8 @@ Class Theme
 	private $datecreation;	// date de création du sujet
 	private $auteur;	// id de l'user qui l'a créé
 	private $nomauteur; // nom de l'auteur
-
+	private $titre_sujet; //titre du sujet
+	
 	public function __construct($db, $data)
 	{
 		$this->db = $db;
@@ -39,6 +40,10 @@ Class Theme
 	public function getTitre()
 	{
 		return $this->titre;
+	}
+	public function getTitreSujet()
+	{
+		return $this->titre_sujet;
 	}
 	public function setNbrSujet($nbrsujet)
 	{
@@ -93,7 +98,7 @@ Class Theme
 	}
 	public function setDernierMessage($id_theme)
 	{
-		$requete="SELECT id_auteur,datecreation FROM message Where id_theme=".$id_theme." ORDER BY datecreation DESC limit 0,1";
+		$requete="SELECT id_auteur,datecreation,id_sujet FROM message Where id_theme=".$id_theme." ORDER BY datecreation DESC limit 0,1";
 		$db = $this->db ;
 		$res=mysqli_query($this->db,$requete);
 		$nbr=mysqli_num_rows($res);
@@ -102,10 +107,16 @@ Class Theme
 			$record=mysqli_fetch_assoc($res);
 			$this->auteur=$record["id_auteur"];
 			$this->datecreation=$record["datecreation"];
+			$id_sujet=$record['id_sujet'];
 			$requete="SELECT login FROM user WHERE id_user=".$this->auteur;
 			$res=mysqli_query($this->db,$requete);
 			$record=mysqli_fetch_assoc($res);
 			$this->nomauteur=$record['login'];
+			$requete="SELECT titre FROM sujet WHERE id_sujet=".$id_sujet;
+			$res=mysqli_query($this->db,$requete);
+			$record=mysqli_fetch_assoc($res);
+			$this->titre_sujet=$record['titre'];
+
 		}
 		else
 		{
